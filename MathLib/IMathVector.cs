@@ -8,7 +8,7 @@
         /// <summary>
         /// Получить размерность вектора (количество координат).
         /// </summary>
-        int Dimentions { get; }
+        int Dimensions { get; }
 
         /// <summary>
         /// Рассчитать длину (модуль) вектора.
