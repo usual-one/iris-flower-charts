@@ -1,7 +1,9 @@
-# .Net Build folders
+# .Net
 *bin/
 *obj/
 *packages/
+
+*.csproj.user
 
 # Visual Studio
 .vs/
