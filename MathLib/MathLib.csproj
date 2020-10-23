@@ -36,8 +36,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IMathVector.cs" />
-    <Compile Include="MathVector.cs" />
+    <Compile Include="src\IMathVector.cs" />
+    <Compile Include="src\MathVector.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
