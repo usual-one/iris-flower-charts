@@ -3,7 +3,7 @@
     /// <summary>
     /// Реализация интерфейса IMathVector.
     /// </summary>
-    class MathVector : IMathVector
+    public class MathVector : IMathVector
     {
         /// <summary>
         /// Список координат (элементов вектора).
