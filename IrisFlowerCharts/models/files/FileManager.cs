@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -15,7 +14,7 @@ namespace IrisFlowerCharts.Files
         /// </summary>
         /// <param name="path">Путь к файлу.</param>
         /// <returns></returns>
-        static public List<String> ReadFile(String path)
+        static public List<string> ReadFile(string path)
         {
             if (!File.Exists(path))
             {

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace IrisFlowerCharts
 {
     /// <summary>
     /// Класс, представляющий Ирис Фишера
     /// </summary>
-    class Iris
+    public class Iris
     {
         /// <summary>
         /// Свойства Ириса
@@ -16,14 +15,14 @@ namespace IrisFlowerCharts
         /// <summary>
         /// Тип Ириса
         /// </summary>
-        public String Type { get; }
+        public string Type { get; }
 
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="features">Вектор свойств Ириса</param>
         /// <param name="type">Тип Ириса</param>
-        public Iris(MathLib.MathVector features, String type)
+        public Iris(MathLib.MathVector features, string type)
         {
             Features = features;
             Type = type;
@@ -33,7 +32,7 @@ namespace IrisFlowerCharts
         /// Конструктор.
         /// </summary>
         /// <param name="initList">Список строк для инициализации.</param>
-        public Iris(List<String> initList)
+        public Iris(List<string> initList)
         {
             Type = initList[^1];
 
