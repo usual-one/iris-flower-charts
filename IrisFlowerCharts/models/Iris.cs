@@ -15,14 +15,14 @@ namespace IrisFlowerCharts
         /// <summary>
         /// Тип Ириса
         /// </summary>
-        public System.String Type { get; }
+        public String Type { get; }
 
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="features">Вектор свойств Ириса</param>
         /// <param name="type">Тип Ириса</param>
-        Iris(MathLib.MathVector features, System.String type)
+        Iris(MathLib.MathVector features, String type)
         {
             Features = features;
             Type = type;
