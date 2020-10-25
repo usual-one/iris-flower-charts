@@ -1,9 +1,11 @@
-﻿namespace MathLib
+﻿using System.Collections;
+
+namespace MathLib
 {
     /// <summary>
     /// Интерфейс математического вектора.
     /// </summary>
-    interface IMathVector : System.Collections.IEnumerable
+    public interface IMathVector : IEnumerable
     {
         /// <summary>
         /// Получить размерность вектора (количество координат).

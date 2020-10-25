@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace IrisFlowerCharts
 {
@@ -22,10 +23,22 @@ namespace IrisFlowerCharts
         /// </summary>
         /// <param name="features">Вектор свойств Ириса</param>
         /// <param name="type">Тип Ириса</param>
-        Iris(MathLib.MathVector features, String type)
+        public Iris(MathLib.MathVector features, String type)
         {
             Features = features;
             Type = type;
+        }
+
+        /// <summary>
+        /// Конструктор.
+        /// </summary>
+        /// <param name="initList">Список строк для инициализации.</param>
+        public Iris(List<String> initList)
+        {
+            Type = initList[^1];
+
+            initList.RemoveAt(initList.Count - 1);
+            Features = new MathLib.MathVector(initList);
         }
     }
 }

@@ -1,4 +1,8 @@
-﻿namespace MathLib
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+
+namespace MathLib
 {
     /// <summary>
     /// Реализация интерфейса IMathVector.
@@ -8,7 +12,7 @@
         /// <summary>
         /// Список координат (элементов вектора).
         /// </summary>
-        private System.Collections.Generic.List<double> Coords;
+        private List<double> Coords;
 
         /// <summary>
         /// Индексатор для доступа к элементам вектора. Нумерация с нуля.
@@ -19,14 +23,14 @@
             get
             {
                 if (i >= Length || i < 0)
-                    throw new System.IndexOutOfRangeException();
+                    throw new IndexOutOfRangeException();
 
                 return Coords[i];
             }
             set
             {
                 if (i >= Length || i < 0)
-                    throw new System.IndexOutOfRangeException();
+                    throw new IndexOutOfRangeException();
 
                 Coords[i] = value;
             }
@@ -45,19 +49,31 @@
             {
                 double squareSum = 0;
                 foreach (double coord in Coords)
-                    squareSum += System.Math.Pow(coord, 2);
+                    squareSum += Math.Pow(coord, 2);
 
-                return System.Math.Sqrt(squareSum);
+                return Math.Sqrt(squareSum);
             }
         }
 
         /// <summary>
-        /// Конструктор
+        /// Конструктор.
         /// </summary>
-        /// <param name="coords">Координаты для вектора</param>
-        MathVector(System.Collections.Generic.List<double> coords)
+        /// <param name="coords">Координаты для вектора.</param>
+        public MathVector(List<double> coords)
         {
             Coords = coords;
+        }
+
+        /// <summary>
+        /// Конструктор.
+        /// </summary>
+        /// <param name="coords">Координаты для вектора.</param>
+        public MathVector(List<String> coords)
+        {
+            foreach (String coord in coords)
+            {
+                Coords.Add(double.Parse(coord));
+            }
         }
 
         /// <summary>
@@ -68,31 +84,31 @@
         public double CalcDistance(IMathVector vector)
         {
             if (Dimensions != vector.Dimensions)
-                throw new System.ArithmeticException("Cannot calculate Euclidean distance between vectors with different dimensions.");
+                throw new ArithmeticException("Cannot calculate Euclidean distance between vectors with different dimensions.");
 
             double squareSum = 0;
             for (int i = 0; i < Dimensions; i++)
-                squareSum = System.Math.Pow(this[i] - vector[i], 2);
+                squareSum = Math.Pow(this[i] - vector[i], 2);
 
-            return System.Math.Sqrt(squareSum);
+            return Math.Sqrt(squareSum);
         }
 
         /// <summary>
         /// Возвращает енумератор, с помощью которого можно проитерироваться по вектору. 
         /// </summary>
         /// <returns>Енумератор для итерации по вектору.</returns>
-        public System.Collections.IEnumerator GetEnumerator()
+        public IEnumerator GetEnumerator()
         {
             return Coords.GetEnumerator();
         }
 
         public IMathVector Invert()
         {
-            var newCoords = new System.Collections.Generic.List<double>();
+            var newCoords = new List<double>();
             for (int i = 0; i < Dimensions; i++)
             {
                 if (this[i] == 0)
-                    throw new System.DivideByZeroException("Cannot invert vector with coordinate equal to zero");
+                    throw new DivideByZeroException("Cannot invert vector with coordinate equal to zero");
 
                 newCoords.Add(1 / this[i]);
             }
@@ -107,9 +123,9 @@
         public IMathVector Multiply(IMathVector vector)
         {
             if (Dimensions != vector.Dimensions)
-                throw new System.ArithmeticException("Cannot multiply vectors with different dimensions.");
+                throw new ArithmeticException("Cannot multiply vectors with different dimensions.");
 
-            var newCoords = new System.Collections.Generic.List<double>();
+            var newCoords = new List<double>();
             for (int i = 0; i < Dimensions; i++)
                 newCoords.Add(this[i] * vector[i]);
 
@@ -123,7 +139,7 @@
         /// <returns>Вектор - произведение текущего вектора и числа.</returns>
         public IMathVector MultiplyNumber(double number)
         {
-            var newCoords = new System.Collections.Generic.List<double>();
+            var newCoords = new List<double>();
             for (int i = 0; i < Dimensions; i++)
                 newCoords.Add(this[i] * number);
 
@@ -136,7 +152,7 @@
         /// <returns>Вектор с координатами противоположными изначальным.</returns>
         public IMathVector Negate()
         {
-            var newCoords = new System.Collections.Generic.List<double>();
+            var newCoords = new List<double>();
             for (int i = 0; i < Dimensions; i++)
                 newCoords.Add(this[i]);
 
@@ -166,9 +182,9 @@
         public IMathVector Sum(IMathVector vector)
         {
             if (Dimensions != vector.Dimensions)
-                throw new System.ArithmeticException("Cannot add vectors with different dimensions.");
+                throw new ArithmeticException("Cannot add vectors with different dimensions.");
 
-            var newCoords = new System.Collections.Generic.List<double>();
+            var newCoords = new List<double>();
             for (int i = 0; i < Dimensions; i++)
                 newCoords.Add(this[i] + vector[i]);
 
@@ -182,7 +198,7 @@
         /// <returns>Вектор - сумму текущего вектора и числа.</returns>
         public IMathVector SumNumber(double number)
         {
-            var newCoords = new System.Collections.Generic.List<double>();
+            var newCoords = new List<double>();
             for (int i = 0; i < Dimensions; i++)
                 newCoords.Add(this[i] + number);
 
