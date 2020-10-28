@@ -10,11 +10,17 @@ namespace IrisFlowerCharts.Models
 
         public List<string> FeatureNames { get; set; }
 
+        public bool IsLoaded()
+        {
+            return Irises.Count != 0;
+        }
+
         public void LoadIrises(string path)
         {
             List<List<string>> csv = CSVFileManager.ReadCSVFile(path, ",");
 
             FeatureNames = csv[0];
+            FeatureNames.RemoveAt(FeatureNames.Count - 1);
 
             csv.RemoveAt(0);
             foreach (List<string> line in csv)

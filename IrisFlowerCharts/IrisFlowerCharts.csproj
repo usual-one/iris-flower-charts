@@ -7,12 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="models\files\" />
-    <Folder Include="models\utils\" />
-    <Folder Include="viewModels\commands\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MathLib\MathLib.csproj" />
   </ItemGroup>
 
