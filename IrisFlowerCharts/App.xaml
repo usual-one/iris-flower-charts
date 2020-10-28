@@ -2,8 +2,19 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:IrisFlowerCharts"
-             StartupUri="views\MainWindow.xaml">
+             StartupUri="views\StartWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="views\styles\Colors.xaml" />
+                <ResourceDictionary Source="views\styles\Fonts.xaml" />
+
+                <ResourceDictionary Source="views\styles\Texts.xaml" />
+                <ResourceDictionary Source="views\styles\Buttons.xaml" />
+                <ResourceDictionary Source="views\styles\Containers.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -9,9 +9,35 @@ namespace IrisFlowerCharts.ViewModels
     {
         private StatsCalculator Calculator;
 
-        public List<Iris> AverageIrises { get; set; }
+        private List<Iris> averageIrises;
 
-        public Dictionary<List<string>, double> EuclideanDistances { get; set; }
+        public List<Iris> AverageIrises 
+        { 
+            get
+            {
+                return averageIrises;
+            }
+            set 
+            {
+                averageIrises = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private Dictionary<List<string>, double> euclideanDistances;
+
+        public Dictionary<List<string>, double> EuclideanDistances
+        {
+            get
+            {
+                return euclideanDistances;
+            }
+            set
+            {
+                euclideanDistances = value;
+                NotifyPropertyChanged();
+            }
+        }
 
         public Main()
         {
@@ -38,18 +64,16 @@ namespace IrisFlowerCharts.ViewModels
 
         private void LoadFile()
         {
-            OpenFileDialog dlg = new OpenFileDialog
+            OpenFileDialog fileDialog = new OpenFileDialog
             {
                 DefaultExt = ".csv",
-                Filter = "Comma Separated Values (*.csv)",
-                InitialDirectory = "."
+                Filter = "Comma Separated Values (*.csv)|*.csv"
             };
 
-            bool? result = dlg.ShowDialog();
 
-            if (result == true)
+            if (fileDialog.ShowDialog() == true)
             {
-                string path = dlg.FileName;
+                string path = fileDialog.FileName;
                 Calculator.LoadIrises(path);
             }
             else

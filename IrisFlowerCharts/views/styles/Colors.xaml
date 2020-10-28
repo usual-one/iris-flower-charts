@@ -1,0 +1,23 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:IrisFlowerCharts.Views.Styles">
+
+    <Color x:Key="BrightBackgroundColor">#FFFFFF</Color>
+    <SolidColorBrush x:Key="BrightBackgroundBrush" Color="{StaticResource BrightBackgroundColor}"></SolidColorBrush> 
+
+    <Color x:Key="DimBackgroundColor">#F0F0F2</Color>
+    <SolidColorBrush x:Key="DimBackgroundBrush" Color="{StaticResource DimBackgroundColor}"></SolidColorBrush> 
+
+    <Color x:Key="BlackTextColor">#2B3037</Color>
+    <SolidColorBrush x:Key="BlackTextBrush" Color="{StaticResource BlackTextColor}"></SolidColorBrush> 
+
+    <Color x:Key="BlueTextColor">#344B6B</Color>
+    <SolidColorBrush x:Key="BlueTextBrush" Color="{StaticResource BlueTextColor}"></SolidColorBrush> 
+
+    <Color x:Key="GreyTextColor">#76869D</Color>
+    <SolidColorBrush x:Key="GreyTextBrush" Color="{StaticResource GreyTextColor}"></SolidColorBrush> 
+
+    <Color x:Key="PlotColor">#E2E3E7</Color>
+    <SolidColorBrush x:Key="PlotBrush" Color="{StaticResource PlotColor}"></SolidColorBrush> 
+
+</ResourceDictionary>
