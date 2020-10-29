@@ -45,10 +45,23 @@
                 </Grid>
 
                 <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
                     <Label Style="{StaticResource TitleLabel}"
-                           HorizontalAlignment="Center">Iris Flower Charts</Label>
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Grid.Row="0">
+                        Iris Flower Charts
+                    </Label>
                     <Button Style="{StaticResource BaseButton}" 
-                            Command="{Binding LoadStatsCommand}">Choose file</Button>
+                            Command="{Binding LoadStatsCommand}"
+                            VerticalAlignment="Top"
+                            Grid.Row="1">
+                        Choose file
+                    </Button>
                 </Grid>
 
             </Grid>
