@@ -11,16 +11,31 @@
         WindowStyle="None"
         ResizeMode="NoResize">
     <Grid Style="{StaticResource MainContainer}">
-        <Grid Style="{StaticResource ContentContainer}" Margin="10">
-            <Grid Grid.Row="0">
-                
+        <Border Style="{StaticResource ContentContainerBorder}"
+                Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" 
+                      Margin="0 10 10 0"
+                      HorizontalAlignment="Right">
+                    <ContentControl
+                        Content="{StaticResource CloseIcon}" />
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Label Style="{StaticResource Heading1Label}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Margin="0 0 0 30">
+                        Cannot read the file
+                    </Label>
+                </Grid>
+
             </Grid>
-            <Grid Grid.Row="1">
-                <Label Style="{StaticResource Heading1Label}"
-                       HorizontalAlignment="Center">
-                    Cannot read the file
-                </Label>
-            </Grid>
-        </Grid>
+        </Border>
     </Grid>
 </Window>

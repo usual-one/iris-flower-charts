@@ -6,7 +6,20 @@
         <Setter Property="Background" Value="{StaticResource DimBackgroundBrush}" />
     </Style>
 
-    <Style x:Key="ContentContainer" TargetType="Grid">
+    <Style x:Key="ContentContainerBorder" TargetType="Border">
+        <Setter Property="CornerRadius" Value="10" />
         <Setter Property="Background" Value="{StaticResource BrightBackgroundBrush}" />
+
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect 
+                    BlurRadius="4" 
+                    Direction="315" 
+                    Color="{StaticResource GreyTextColor}" 
+                    Opacity="0.05"
+                    ShadowDepth="1"/>
+            </Setter.Value>
+        </Setter>
     </Style>
+        
 </ResourceDictionary>

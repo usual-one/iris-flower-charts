@@ -3,10 +3,17 @@
                     xmlns:local="clr-namespace:IrisFlowerCharts.views.styles">
 
     <Grid x:Key="MinimizeIcon">
-        <Viewbox Stretch="Uniform">
-            <Path Data="M13.9773 0H1.02273C0.458181 0 0 0.444711 0 0.992662V1.6544C0 2.20235 0.458181 2.64706 1.02273 2.64706H13.9773C14.5418 2.64706 15 2.20235 15 1.6544V0.992662C15 0.444711 14.5418 0 13.9773 0Z"
-                  Fill="{StaticResource GreyTextBrush}" />
-        </Viewbox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2.65" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" />
+        <Grid Grid.Row="1">
+            <Viewbox Stretch="Uniform">
+                <Path Data="M13.9773 0H1.02273C0.458181 0 0 0.444711 0 0.992662V1.6544C0 2.20235 0.458181 2.64706 1.02273 2.64706H13.9773C14.5418 2.64706 15 2.20235 15 1.6544V0.992662C15 0.444711 14.5418 0 13.9773 0Z"
+                      Fill="{StaticResource GreyTextBrush}" />
+            </Viewbox>
+        </Grid>
     </Grid>
 
     <Grid x:Key="CloseIcon">

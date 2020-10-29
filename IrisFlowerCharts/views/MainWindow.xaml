@@ -16,43 +16,71 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0"
-              Style="{StaticResource ContentContainer}">
+        <Border Style="{StaticResource ContentContainerBorder}"
+                CornerRadius="0"
+                Grid.Row="0">
+            <Grid>
 
-            <Label Style="{StaticResource TitleLabel}"
-                   VerticalAlignment="Center"
-                   Margin="40 0 0 0">
-                Iris Flower Charts
-            </Label>
-            <Button Style="{StaticResource BaseButton}">
-                Choose file
-            </Button>
-        </Grid>
+                <Label Style="{StaticResource TitleLabel}"
+                       VerticalAlignment="Center"
+                       Margin="40 0 0 0">
+                    Iris Flower Charts
+                </Label>
+
+                <Button Style="{StaticResource BaseButton}">
+                    Choose file
+                </Button>
+
+                <Grid
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Center"
+                      Margin="0 10 10 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="15" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <ContentControl
+                            Content="{StaticResource MinimizeIcon}"
+                            Margin="0 0 10 0"/>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <ContentControl
+                            Content="{StaticResource CloseIcon}"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            
-            <Grid Grid.Column="0"
-                  Style="{StaticResource ContentContainer}"
-                  Margin="30 40 15 30">
-                <Label Style="{StaticResource Heading1Label}"
-                       Margin="20">
-                    Features average
-                </Label> 
-            </Grid>
 
-            <Grid Grid.Column="1"
-                  Style="{StaticResource ContentContainer}"
-                  Margin="15 40 30 30">
-                <Label Style="{StaticResource Heading1Label}"
-                       Margin="20">
-                    Euclidean distance
-                </Label> 
+            <Border Style="{StaticResource ContentContainerBorder}"
+                    Grid.Column="0"
+                    Margin="30 40 15 30">
+                <Grid>
+                    <Label Style="{StaticResource Heading1Label}"
+                           Margin="20">
+                        Features average
+                    </Label> 
+                </Grid>
+            </Border>
+
+            <Border Style="{StaticResource ContentContainerBorder}"
+                    Grid.Column="1"
+                    Margin="15 40 30 30">
                 
-            </Grid>
+                <Grid>
+                    <Label Style="{StaticResource Heading1Label}"
+                           Margin="20">
+                        Euclidean distance
+                    </Label> 
+                </Grid>
+            </Border>
         </Grid>
     </Grid>
 </Window>
