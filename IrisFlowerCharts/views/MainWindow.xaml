@@ -21,35 +21,44 @@
                 Grid.Row="0">
             <Grid>
 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="60" />
+                </Grid.ColumnDefinitions>
+
                 <Label Style="{StaticResource TitleLabel}"
                        VerticalAlignment="Center"
-                       Margin="40 0 0 0">
+                       Margin="40 0 0 0"
+                       Grid.Column="0">
                     Iris Flower Charts
                 </Label>
 
-                <Button Style="{StaticResource BaseButton}">
+                <Button Style="{StaticResource BaseButton}"
+                        HorizontalAlignment="Right"
+                        Margin="0 0 40 0"
+                        Grid.Column="1">
                     Choose file
                 </Button>
 
-                <Grid
+                <Grid Grid.Column="2"
                       HorizontalAlignment="Right"
                       VerticalAlignment="Center"
-                      Margin="0 10 10 0">
+                      Margin="0 0 20 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="25" />
                         <ColumnDefinition Width="15" />
                     </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="0">
-                        <ContentControl
-                            Content="{StaticResource MinimizeIcon}"
-                            Margin="0 0 10 0"/>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <ContentControl
-                            Content="{StaticResource CloseIcon}"/>
-                    </Grid>
+                    <ContentControl
+                        Content="{StaticResource MinimizeIcon}"
+                        Margin="0 0 10 0"
+                        Grid.Column="0"/>
+                    <ContentControl
+                        Content="{StaticResource CloseIcon}"
+                        Grid.Column="1"/>
                 </Grid>
+
             </Grid>
         </Border>
 
