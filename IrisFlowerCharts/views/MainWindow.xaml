@@ -5,7 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IrisFlowerCharts.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Iris Flower Chats" 
+        Height="700" Width="1100"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize">
+    <Grid Style="{StaticResource MainContainer}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Style="{StaticResource ContentContainer}">
+
+            <Label Style="{StaticResource TitleLabel}"
+                   VerticalAlignment="Center"
+                   Margin="40 0 0 0">
+                Iris Flower Charts
+            </Label>
+            <Button Style="{StaticResource BaseButton}">
+                Choose file
+            </Button>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <Grid Grid.Column="0"
+                  Style="{StaticResource ContentContainer}"
+                  Margin="30 40 15 30">
+                <Label Style="{StaticResource Heading1Label}"
+                       Margin="20">
+                    Features average
+                </Label> 
+            </Grid>
+
+            <Grid Grid.Column="1"
+                  Style="{StaticResource ContentContainer}"
+                  Margin="15 40 30 30">
+                <Label Style="{StaticResource Heading1Label}"
+                       Margin="20">
+                    Euclidean distance
+                </Label> 
+                
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

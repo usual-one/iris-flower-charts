@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IrisFlowerCharts.Views"
         mc:Ignorable="d"
-        Title="ErrorWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="Error"
+        Height="140" Width="300"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None"
+        ResizeMode="NoResize">
+    <Grid Style="{StaticResource MainContainer}">
+        <Grid Style="{StaticResource ContentContainer}" Margin="10">
+            <Grid Grid.Row="0">
+                
+            </Grid>
+            <Grid Grid.Row="1">
+                <Label Style="{StaticResource Heading1Label}"
+                       HorizontalAlignment="Center">
+                    Cannot read the file
+                </Label>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

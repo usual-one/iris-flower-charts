@@ -9,6 +9,7 @@
 
                 <ResourceDictionary Source="views\styles\Colors.xaml" />
                 <ResourceDictionary Source="views\styles\Fonts.xaml" />
+                <ResourceDictionary Source="views\styles\Icons.xaml" />
 
                 <ResourceDictionary Source="views\styles\Texts.xaml" />
                 <ResourceDictionary Source="views\styles\Buttons.xaml" />

@@ -18,9 +18,29 @@
 
     <Grid Style="{StaticResource MainContainer}">
         <Grid Style="{StaticResource ContentContainer}" Margin="10">
-            <Grid Grid.Row="0">
-                
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            
+            <Grid Grid.Row="0"
+                  HorizontalAlignment="Right"
+                  Margin="0 15 10 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15" />
+                    <ColumnDefinition Width="15" />
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <ContentControl
+                        Content="{StaticResource MinimizeIcon}"/>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ContentControl
+                        Content="{StaticResource CloseIcon}"/>
+                </Grid>
             </Grid>
+
             <Grid Grid.Row="1">
                 <Label Style="{StaticResource TitleLabel}"
                        HorizontalAlignment="Center">Iris Flower Charts</Label>
