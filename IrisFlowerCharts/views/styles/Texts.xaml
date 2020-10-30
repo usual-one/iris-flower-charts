@@ -2,35 +2,35 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:IrisFlowerCharts.views.styles">
 
-    <Style x:Key="TitleLabel" TargetType="Label">
+    <Style x:Key="TitleText" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource BaseFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource TitleFontSize}" />
         <Setter Property="FontWeight" Value="ExtraBold" />
         <Setter Property="Foreground" Value="{StaticResource BlackTextBrush}" />
     </Style>
 
-    <Style x:Key="Heading1Label" TargetType="Label">
+    <Style x:Key="Heading1Text" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource BaseFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource Heading1FontSize}" />
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Foreground" Value="{StaticResource BlueTextBrush}" />
     </Style>
 
-    <Style x:Key="Heading2Label" TargetType="Label">
+    <Style x:Key="Heading2Text" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource BaseFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource Heading2FontSize}" />
         <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Foreground" Value="{StaticResource GreyTextBrush}" />
     </Style>
 
-    <Style x:Key="NormalTextLabel" TargetType="Label">
+    <Style x:Key="NormalText" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource BaseFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource NormalFontSize}" />
         <Setter Property="FontWeight" Value="Regular" />
         <Setter Property="Foreground" Value="{StaticResource GreyTextBrush}" />
     </Style>
 
-    <Style x:Key="CaptionLabel" TargetType="Label">
+    <Style x:Key="CaptionText" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource BaseFontFamily}" />
         <Setter Property="FontSize" Value="{StaticResource CaptionFontSize}" />
         <Setter Property="FontWeight" Value="Medium" />

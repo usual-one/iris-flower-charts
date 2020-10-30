@@ -50,12 +50,12 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     
-                    <Label Style="{StaticResource TitleLabel}"
+                    <TextBlock Style="{StaticResource TitleText}"
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Grid.Row="0">
                         Iris Flower Charts
-                    </Label>
+                    </TextBlock>
                     <Button Style="{StaticResource BaseButton}" 
                             Command="{Binding LoadStatsCommand}"
                             VerticalAlignment="Top"

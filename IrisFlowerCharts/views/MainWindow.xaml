@@ -27,19 +27,17 @@
                     <ColumnDefinition Width="60" />
                 </Grid.ColumnDefinitions>
 
-                <Label Style="{StaticResource TitleLabel}"
-                       VerticalAlignment="Center"
-                       Margin="40 0 0 0"
-                       Grid.Column="0">
-                    Iris Flower Charts
-                </Label>
+                <TextBlock Style="{StaticResource TitleText}"
+                           VerticalAlignment="Center"
+                           Margin="40 0 0 0"
+                           Grid.Column="0"
+                           Text="Iris Flower Charts" />
 
                 <Button Style="{StaticResource BaseButton}"
                         HorizontalAlignment="Right"
                         Margin="0 0 40 0"
-                        Grid.Column="1">
-                    Choose file
-                </Button>
+                        Grid.Column="1"
+                        Content="Choose file" />
 
                 <Grid Grid.Column="2"
                       HorizontalAlignment="Right"
@@ -50,13 +48,11 @@
                         <ColumnDefinition Width="15" />
                     </Grid.ColumnDefinitions>
 
-                    <ContentControl
-                        Content="{StaticResource MinimizeIcon}"
-                        Margin="0 0 10 0"
-                        Grid.Column="0"/>
-                    <ContentControl
-                        Content="{StaticResource CloseIcon}"
-                        Grid.Column="1"/>
+                    <ContentControl Content="{StaticResource MinimizeIcon}"
+                                    Margin="0 0 10 0"
+                                    Grid.Column="0" />
+                    <ContentControl Content="{StaticResource CloseIcon}"
+                                    Grid.Column="1"/>
                 </Grid>
 
             </Grid>
@@ -72,10 +68,9 @@
                     Grid.Column="0"
                     Margin="30 40 15 30">
                 <Grid>
-                    <Label Style="{StaticResource Heading1Label}"
-                           Margin="20">
-                        Features average
-                    </Label> 
+                    <TextBlock Style="{StaticResource Heading1Text}"
+                               Margin="20"
+                               Text="Features average" />
                 </Grid>
             </Border>
 
@@ -84,10 +79,9 @@
                     Margin="15 40 30 30">
                 
                 <Grid>
-                    <Label Style="{StaticResource Heading1Label}"
-                           Margin="20">
-                        Euclidean distance
-                    </Label> 
+                    <TextBlock Style="{StaticResource Heading1Text}"
+                               Margin="20"
+                               Text="Euclidean distance" />
                 </Grid>
             </Border>
         </Grid>
