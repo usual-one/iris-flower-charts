@@ -20,6 +20,17 @@ namespace IrisFlowerCharts.Views
         public ErrorWindow()
         {
             InitializeComponent();
+
+            CloseButton.MouseDown += (sender, e) =>
+            {
+                Close();
+            };
+
+            ControlGrid.MouseDown += (sender, e) =>
+            {
+                if (e.ChangedButton == MouseButton.Left)
+                    DragMove();
+            };
         }
     }
 }

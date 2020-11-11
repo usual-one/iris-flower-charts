@@ -24,23 +24,28 @@
                     <RowDefinition Height="25" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-                
-                <Grid Grid.Row="0"
-                      HorizontalAlignment="Right"
-                      Margin="0 10 10 0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="25" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Column="0">
-                        <ContentControl
-                            Content="{StaticResource MinimizeIcon}"
-                            Margin="0 0 10 0"/>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <ContentControl
-                            Content="{StaticResource CloseIcon}"/>
+                <Grid Grid.Row="0"
+                      Margin="10 10 10 0"
+                      x:Name="ControlGrid"
+                      Background="Transparent">
+                    <Grid HorizontalAlignment="Right">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0">
+                            <ContentControl
+                                x:Name="MinimizeButton"
+                                Content="{StaticResource MinimizeIcon}"
+                                Margin="0 0 10 0"/>
+                        </Grid>
+                        <Grid Grid.Column="1">
+                            <ContentControl
+                                x:Name="CloseButton"
+                                Content="{StaticResource CloseIcon}"/>
+                        </Grid>
                     </Grid>
                 </Grid>
 

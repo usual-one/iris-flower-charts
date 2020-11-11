@@ -24,6 +24,22 @@ namespace IrisFlowerCharts.Views
         public MainWindow()
         {
             InitializeComponent();
+
+            MinimizeButton.MouseDown += (sender, e) =>
+            {
+                WindowState = WindowState.Minimized;
+            };
+
+            CloseButton.MouseDown += (sender, e) =>
+            {
+                Application.Current.Shutdown();
+            };
+
+            TopGrid.MouseDown += (sender, e) =>
+            {
+                if (e.ChangedButton == MouseButton.Left)
+                    DragMove();
+            };
         }
     }
 }
