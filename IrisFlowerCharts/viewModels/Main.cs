@@ -67,7 +67,8 @@ namespace IrisFlowerCharts.ViewModels
             OpenFileDialog fileDialog = new OpenFileDialog
             {
                 DefaultExt = ".csv",
-                Filter = "Comma Separated Values (*.csv)|*.csv"
+                Filter = "Comma Separated Values (*.csv)|*.csv",
+                InitialDirectory = "X:\\Main\\Programming\\C#\\iris-flower-charts\\examples"
             };
 
 
