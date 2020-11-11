@@ -1,5 +1,6 @@
 ﻿using IrisFlowerCharts.Models;
 using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 
@@ -39,6 +40,12 @@ namespace IrisFlowerCharts.ViewModels
             }
         }
 
+        public Action CloseStartWindowAction { get; set; }
+
+        public Action ShowMainWindowAction { get; set; }
+
+        public Action ShowErrorWindowAction { get; set; } 
+
         public Main()
         {
             Calculator = new StatsCalculator();
@@ -53,14 +60,31 @@ namespace IrisFlowerCharts.ViewModels
                 if (loadStatsCommand == null)
                     loadStatsCommand = new Commands.DelegateCommand(o =>
                     {
-                        LoadFile();
-                        CalculateStats();
+                        try
+                        {
+                            LoadFile();
+                            CalculateStats();
+                        }
+                        catch (Exception e)
+                        {
+                            ShowErrorWindowAction();
+                            return;
+                        }
+
+                        CloseStartWindowAction();
+                        ShowMainWindowAction();
                     });
                 return loadStatsCommand;
             }
         }
 
         private Commands.DelegateCommand loadStatsCommand;
+
+        private void CalculateStats()
+        {
+            AverageIrises = Calculator.CalculateAverageIrises();
+            EuclideanDistances = Calculator.CalculateEuclideanDistances();
+        }
 
         private void LoadFile()
         {
@@ -81,10 +105,5 @@ namespace IrisFlowerCharts.ViewModels
                 return;
         }
 
-        private void CalculateStats()
-        {
-            AverageIrises = Calculator.CalculateAverageIrises();
-            EuclideanDistances = Calculator.CalculateEuclideanDistances();
-        }
     }
 }
