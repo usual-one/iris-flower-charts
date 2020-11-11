@@ -6,7 +6,7 @@ namespace IrisFlowerCharts.Models
 {
     public class StatsCalculator
     {
-        public List<Iris> Irises { get; }
+        public List<Iris> Irises { get; private set; }
 
         public List<string> FeatureNames { get; set; }
 
@@ -23,6 +23,7 @@ namespace IrisFlowerCharts.Models
             FeatureNames.RemoveAt(FeatureNames.Count - 1);
 
             csv.RemoveAt(0);
+            Irises = new List<Iris>();
             foreach (List<string> line in csv)
                 Irises.Add(new Iris(line));
         }

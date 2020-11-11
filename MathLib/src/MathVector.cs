@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace MathLib
 {
@@ -70,9 +71,10 @@ namespace MathLib
         /// <param name="coords">Координаты для вектора.</param>
         public MathVector(List<String> coords)
         {
+            Coords = new List<double>();
             foreach (String coord in coords)
             {
-                Coords.Add(double.Parse(coord));
+                Coords.Add(double.Parse(coord, CultureInfo.InvariantCulture));
             }
         }
 
