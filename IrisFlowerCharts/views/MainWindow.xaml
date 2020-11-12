@@ -109,7 +109,26 @@
                             <lvc:CartesianChart Grid.Row="1"
                                                 Margin="0 0 0 12"
                                                 Series="{Binding SepalWidths}">
-                                
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Style="{StaticResource NormalText}"
+                                              LabelsRotation="-45"
+                                              Labels="{Binding IrisTypes}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False"
+                                                           Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis x:Name="SepalWidthAxisY" 
+                                              Style="{StaticResource NormalText}" >
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator Stroke="{StaticResource PlotBrush}"
+                                                           StrokeThickness="1"
+                                                           StrokeDashArray="5" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
                             </lvc:CartesianChart>
                             
                         </Grid>
@@ -128,7 +147,26 @@
                             <lvc:CartesianChart Grid.Row="1"
                                                 Margin="0 0 0 12"
                                                 Series="{Binding SepalLengths}">
-                                
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Style="{StaticResource NormalText}"
+                                              LabelsRotation="-45"
+                                              Labels="{Binding IrisTypes}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False"
+                                                           Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis x:Name="SepalLengthAxisY" 
+                                              Style="{StaticResource NormalText}" >
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator Stroke="{StaticResource PlotBrush}"
+                                                           StrokeThickness="1"
+                                                           StrokeDashArray="5" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
                             </lvc:CartesianChart>
                             
                         </Grid>
@@ -147,7 +185,26 @@
                             <lvc:CartesianChart Grid.Row="1"
                                                 Margin="0 0 0 12"
                                                 Series="{Binding PetalWidths}">
-                                
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Style="{StaticResource NormalText}"
+                                              LabelsRotation="-45"
+                                              Labels="{Binding IrisTypes}">
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False"
+                                                           Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis x:Name="PetalWidthAxisY" 
+                                              Style="{StaticResource NormalText}" >
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator Stroke="{StaticResource PlotBrush}"
+                                                           StrokeThickness="1"
+                                                           StrokeDashArray="5" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
                             </lvc:CartesianChart>
                             
                         </Grid>
@@ -166,7 +223,27 @@
                             <lvc:CartesianChart Grid.Row="1"
                                                 Margin="0 0 0 12"
                                                 Series="{Binding PetalLengths}">
-                                
+                                <lvc:CartesianChart.AxisX>
+                                    <lvc:Axis Style="{StaticResource NormalText}"
+                                              LabelsRotation="-45"
+                                              Labels="{Binding IrisTypes}"
+             >
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator IsEnabled="False"
+                                                           Step="1" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisX>
+                                <lvc:CartesianChart.AxisY>
+                                    <lvc:Axis x:Name="PetalLengthAxisY" 
+                                              Style="{StaticResource NormalText}" >
+                                        <lvc:Axis.Separator>
+                                            <lvc:Separator Stroke="{StaticResource PlotBrush}"
+                                                           StrokeThickness="1"
+                                                           StrokeDashArray="5" />
+                                        </lvc:Axis.Separator>
+                                    </lvc:Axis>
+                                </lvc:CartesianChart.AxisY>
                             </lvc:CartesianChart>
                             
                         </Grid>

@@ -1,9 +1,11 @@
-﻿using IrisFlowerCharts.Models;
+﻿using Accessibility;
+using IrisFlowerCharts.Models;
 using LiveCharts;
 using LiveCharts.Wpf;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Input;
 
@@ -65,7 +67,7 @@ namespace IrisFlowerCharts.ViewModels
             }
         }
 
-        public SeriesCollection irisDistances;
+        private SeriesCollection irisDistances;
 
         public SeriesCollection IrisDistances
         {
@@ -73,6 +75,18 @@ namespace IrisFlowerCharts.ViewModels
             set 
             {
                 irisDistances = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private List<string> irisTypes;
+
+        public List<string> IrisTypes
+        {
+            get { return irisTypes; }
+            set
+            {
+                irisTypes = value;
                 NotifyPropertyChanged();
             }
         }
@@ -146,7 +160,21 @@ namespace IrisFlowerCharts.ViewModels
         private void CalculateStats()
         {
             averageIrises = Calculator.CalculateAverageIrises();
+            foreach (Iris iris in averageIrises)
+            {
+                for (int i = 0; i < iris.Features.Dimensions; i++)
+                {
+                    iris.Features[i] = Math.Round(iris.Features[i], 2);
+                }
+            }
+
             euclideanDistances = Calculator.CalculateEuclideanDistances();
+            var keys = new List<List<string>>(euclideanDistances.Keys); 
+            foreach (List<string> key in keys)
+            {
+                euclideanDistances[key] = Math.Round(euclideanDistances[key], 2);
+            }
+
         }
 
         private void CreateCharts()
@@ -155,16 +183,18 @@ namespace IrisFlowerCharts.ViewModels
             SepalLengths = new SeriesCollection();
             PetalWidths = new SeriesCollection();
             PetalLengths = new SeriesCollection();
+            IrisTypes = new List<string>();
 
-            foreach (var iris in averageIrises)
+            foreach (Iris iris in averageIrises)
             {
+                IrisTypes.Add(iris.Type);
                 SepalWidths.Add(new ColumnSeries
                 {
                     Title = iris.Type,
                     Values = new ChartValues<double> 
                     { 
                         iris.Features[1]
-                    } 
+                    }
                 });
                 SepalLengths.Add(new ColumnSeries
                 {
@@ -193,7 +223,7 @@ namespace IrisFlowerCharts.ViewModels
             }
 
             IrisDistances = new SeriesCollection();
-            foreach(var pair in euclideanDistances)
+            foreach (var pair in euclideanDistances)
             {
                 string title = pair.Key[0];
                 for (int i = 1; i < pair.Key.Count; i++)

@@ -25,6 +25,11 @@ namespace IrisFlowerCharts.Views
         {
             InitializeComponent();
 
+            SepalWidthAxisY.LabelFormatter = label => Math.Round(label, 2).ToString();
+            SepalLengthAxisY.LabelFormatter = label => Math.Round(label, 2).ToString();
+            PetalWidthAxisY.LabelFormatter = label => Math.Round(label, 2).ToString();
+            PetalLengthAxisY.LabelFormatter = label => Math.Round(label, 2).ToString();
+
             MinimizeButton.MouseDown += (sender, e) =>
             {
                 WindowState = WindowState.Minimized;

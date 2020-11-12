@@ -18,6 +18,21 @@
     <SolidColorBrush x:Key="GreyTextBrush" Color="{StaticResource GreyTextColor}"></SolidColorBrush> 
 
     <Color x:Key="PlotColor">#E2E3E7</Color>
-    <SolidColorBrush x:Key="PlotBrush" Color="{StaticResource PlotColor}"></SolidColorBrush> 
+    <SolidColorBrush x:Key="PlotBrush" Color="{StaticResource PlotColor}"></SolidColorBrush>
+
+    <LinearGradientBrush x:Key="PurpleGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#827BE5" Offset="1" />
+        <GradientStop Color="#D67BE5" Offset="1" />
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="OrangeGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#EE4E40" Offset="1" />
+        <GradientStop Color="#EE9440" Offset="1" />
+    </LinearGradientBrush>
+    
+    <LinearGradientBrush x:Key="GreenGradientBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#17FF74" Offset="1" />
+        <GradientStop Color="#30C6D0" Offset="1" />
+    </LinearGradientBrush>
 
 </ResourceDictionary>
