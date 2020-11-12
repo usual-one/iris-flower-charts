@@ -12,10 +12,6 @@
         ResizeMode="NoResize"
         WindowStyle="None">
 
-    <Window.DataContext>
-        <vm:Main></vm:Main>
-    </Window.DataContext>
-
     <Grid Style="{StaticResource MainContainer}">
         <Border Style="{StaticResource ContentContainerBorder}" Margin="10">
             <Grid>
