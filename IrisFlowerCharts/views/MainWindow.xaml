@@ -72,9 +72,101 @@
                     Grid.Column="0"
                     Margin="30 40 15 30">
                 <Grid>
-                    <TextBlock Style="{StaticResource Heading1Text}"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Style="{StaticResource Heading1Text}"
                                Margin="20"
                                Text="Features average" />
+
+                    <Grid Grid.Row="1"
+                          Margin="30 0 30 30">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid Grid.Row="0" 
+                              Grid.Column="0"
+                              Margin="0 0 37 10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="0"
+                                       Style="{StaticResource Heading2Text}"
+                                       Text="Sepal width" 
+                                       Margin="0 0 0 15" 
+                                       HorizontalAlignment="Left" />
+                            <lvc:CartesianChart Grid.Row="1"
+                                                Margin="0 0 0 12">
+                                
+                            </lvc:CartesianChart>
+                            
+                        </Grid>
+                        <Grid Grid.Row="0" 
+                              Grid.Column="1"
+                              Margin="37 0 0 10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" 
+                                       Style="{StaticResource Heading2Text}"
+                                       Text="Sepal length" 
+                                       Margin="0 0 0 15" />
+                            <lvc:CartesianChart Grid.Row="1"
+                                                Margin="0 0 0 12">
+                                
+                            </lvc:CartesianChart>
+                            
+                        </Grid>
+                        <Grid Grid.Row="1" 
+                              Grid.Column="0"
+                              Margin="0 10 37 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Style="{StaticResource Heading2Text}"
+                                       Text="Petal width" 
+                                       Margin="0 0 0 15"/>
+                            <lvc:CartesianChart Grid.Row="1"
+                                                Margin="0 0 0 12">
+                                
+                            </lvc:CartesianChart>
+                            
+                        </Grid>
+                        <Grid Grid.Row="1" 
+                              Grid.Column="1"
+                              Margin="37 10 0 0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0"
+                                       Style="{StaticResource Heading2Text}"
+                                       Text="Petal length" 
+                                       Margin="0 0 0 15"/>
+                            <lvc:CartesianChart Grid.Row="1"
+                                                Margin="0 0 0 12">
+                                
+                            </lvc:CartesianChart>
+                            
+                        </Grid>
+                    </Grid>
+                    
                 </Grid>
             </Border>
 
@@ -83,9 +175,24 @@
                     Margin="15 40 30 30">
                 
                 <Grid>
-                    <TextBlock Style="{StaticResource Heading1Text}"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0"
+                               Style="{StaticResource Heading1Text}"
                                Margin="20"
                                Text="Euclidean distance" />
+
+                    <lvc:PieChart Grid.Row="1"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  Width="300"
+                                  Height="300"
+                                  InnerRadius="127">
+                        
+                    </lvc:PieChart>
                 </Grid>
             </Border>
         </Grid>
