@@ -4,6 +4,7 @@ using LiveCharts.Wpf;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Input;
 
 namespace IrisFlowerCharts.ViewModels
@@ -60,6 +61,18 @@ namespace IrisFlowerCharts.ViewModels
             set
             {
                 petalLengths = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public SeriesCollection irisDistances;
+
+        public SeriesCollection IrisDistances
+        {
+            get { return irisDistances; }
+            set 
+            {
+                irisDistances = value;
                 NotifyPropertyChanged();
             }
         }
@@ -176,6 +189,24 @@ namespace IrisFlowerCharts.ViewModels
                     { 
                         iris.Features[2]
                     } 
+                });
+            }
+
+            IrisDistances = new SeriesCollection();
+            foreach(var pair in euclideanDistances)
+            {
+                string title = pair.Key[0];
+                for (int i = 1; i < pair.Key.Count; i++)
+                {
+                    title += " × " + pair.Key[i];
+                }
+                IrisDistances.Add(new PieSeries
+                {
+                    Title = title,
+                    Values = new ChartValues<double> 
+                    { 
+                        pair.Value
+                    }
                 });
             }
 

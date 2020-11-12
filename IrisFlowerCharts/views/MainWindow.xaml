@@ -195,7 +195,8 @@
                                   VerticalAlignment="Center"
                                   Width="300"
                                   Height="300"
-                                  InnerRadius="127">
+                                  InnerRadius="127"
+                                  Series="{Binding IrisDistances}">
                         
                     </lvc:PieChart>
                 </Grid>
