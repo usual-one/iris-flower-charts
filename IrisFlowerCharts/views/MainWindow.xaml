@@ -36,6 +36,7 @@
                            Text="Iris Flower Charts" />
 
                 <Button Style="{StaticResource BaseButton}"
+                        Command="{Binding ReloadStatsCommand}"
                         HorizontalAlignment="Right"
                         Margin="0 0 40 0"
                         Grid.Column="1"
@@ -106,7 +107,8 @@
                                        Margin="0 0 0 15" 
                                        HorizontalAlignment="Left" />
                             <lvc:CartesianChart Grid.Row="1"
-                                                Margin="0 0 0 12">
+                                                Margin="0 0 0 12"
+                                                Series="{Binding SepalWidths}">
                                 
                             </lvc:CartesianChart>
                             
@@ -124,7 +126,8 @@
                                        Text="Sepal length" 
                                        Margin="0 0 0 15" />
                             <lvc:CartesianChart Grid.Row="1"
-                                                Margin="0 0 0 12">
+                                                Margin="0 0 0 12"
+                                                Series="{Binding SepalLengths}">
                                 
                             </lvc:CartesianChart>
                             
@@ -142,7 +145,8 @@
                                        Text="Petal width" 
                                        Margin="0 0 0 15"/>
                             <lvc:CartesianChart Grid.Row="1"
-                                                Margin="0 0 0 12">
+                                                Margin="0 0 0 12"
+                                                Series="{Binding PetalWidths}">
                                 
                             </lvc:CartesianChart>
                             
@@ -160,7 +164,8 @@
                                        Text="Petal length" 
                                        Margin="0 0 0 15"/>
                             <lvc:CartesianChart Grid.Row="1"
-                                                Margin="0 0 0 12">
+                                                Margin="0 0 0 12"
+                                                Series="{Binding PetalLengths}">
                                 
                             </lvc:CartesianChart>
                             

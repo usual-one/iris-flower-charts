@@ -1,4 +1,6 @@
 ﻿using IrisFlowerCharts.Models;
+using LiveCharts;
+using LiveCharts.Wpf;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -12,30 +14,52 @@ namespace IrisFlowerCharts.ViewModels
 
         private List<Iris> averageIrises;
 
-        public List<Iris> AverageIrises 
+        private Dictionary<List<string>, double> euclideanDistances;
+
+        private SeriesCollection sepalWidths;
+
+        public SeriesCollection SepalWidths 
         { 
-            get
+            get { return sepalWidths; }
+            set
             {
-                return averageIrises;
-            }
-            set 
-            {
-                averageIrises = value;
+                sepalWidths = value;
                 NotifyPropertyChanged();
             }
         }
 
-        private Dictionary<List<string>, double> euclideanDistances;
+        private SeriesCollection sepalLengths;
 
-        public Dictionary<List<string>, double> EuclideanDistances
-        {
-            get
-            {
-                return euclideanDistances;
-            }
+        public SeriesCollection SepalLengths
+        { 
+            get { return sepalLengths; }
             set
             {
-                euclideanDistances = value;
+                sepalLengths = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private SeriesCollection petalWidths;
+
+        public SeriesCollection PetalWidths
+        { 
+            get { return petalWidths; }
+            set
+            {
+                petalWidths = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private SeriesCollection petalLengths;
+
+        public SeriesCollection PetalLengths
+        { 
+            get { return petalLengths; }
+            set
+            {
+                petalLengths = value;
                 NotifyPropertyChanged();
             }
         }
@@ -49,8 +73,8 @@ namespace IrisFlowerCharts.ViewModels
         public Main()
         {
             Calculator = new StatsCalculator();
-            AverageIrises = new List<Iris>();
-            EuclideanDistances = new Dictionary<List<string>, double>();
+            averageIrises = new List<Iris>();
+            euclideanDistances = new Dictionary<List<string>, double>();
         }
 
         public ICommand LoadStatsCommand
@@ -64,6 +88,7 @@ namespace IrisFlowerCharts.ViewModels
                         {
                             LoadFile();
                             CalculateStats();
+                            CreateCharts();
                         }
                         catch (Exception e)
                         {
@@ -80,10 +105,80 @@ namespace IrisFlowerCharts.ViewModels
 
         private Commands.DelegateCommand loadStatsCommand;
 
+        public ICommand ReloadStatsCommand
+        {
+            get
+            {
+                if (reloadStatsCommand == null)
+                    reloadStatsCommand = new Commands.DelegateCommand(o =>
+                    {
+                        try
+                        {
+                            LoadFile();
+                            CalculateStats();
+                            CreateCharts();
+                        }
+                        catch (Exception e)
+                        {
+                            ShowErrorWindowAction();
+                            return;
+                        }
+                    });
+                return reloadStatsCommand;
+            }
+        }
+
+        private Commands.DelegateCommand reloadStatsCommand;
+
         private void CalculateStats()
         {
-            AverageIrises = Calculator.CalculateAverageIrises();
-            EuclideanDistances = Calculator.CalculateEuclideanDistances();
+            averageIrises = Calculator.CalculateAverageIrises();
+            euclideanDistances = Calculator.CalculateEuclideanDistances();
+        }
+
+        private void CreateCharts()
+        {
+            SepalWidths = new SeriesCollection();
+            SepalLengths = new SeriesCollection();
+            PetalWidths = new SeriesCollection();
+            PetalLengths = new SeriesCollection();
+
+            foreach (var iris in averageIrises)
+            {
+                SepalWidths.Add(new ColumnSeries
+                {
+                    Title = iris.Type,
+                    Values = new ChartValues<double> 
+                    { 
+                        iris.Features[1]
+                    } 
+                });
+                SepalLengths.Add(new ColumnSeries
+                {
+                    Title = iris.Type,
+                    Values = new ChartValues<double> 
+                    { 
+                        iris.Features[0]
+                    } 
+                });
+                PetalWidths.Add(new ColumnSeries
+                {
+                    Title = iris.Type,
+                    Values = new ChartValues<double> 
+                    { 
+                        iris.Features[3]
+                    } 
+                });
+                PetalLengths.Add(new ColumnSeries
+                {
+                    Title = iris.Type,
+                    Values = new ChartValues<double> 
+                    { 
+                        iris.Features[2]
+                    } 
+                });
+            }
+
         }
 
         private void LoadFile()
