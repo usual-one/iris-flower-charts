@@ -4,22 +4,37 @@ using System.Linq;
 
 namespace IrisFlowerCharts.Models
 {
+    /// <summary>Statistics metrics calculator.</summary>
     public class StatsCalculator
     {
+        /// <summary>Get loaded list of Iris flowers.</summary>
         public List<Iris> Irises { get; private set; }
 
+        /// <summary>Get list of Iris flowers' feature names.</summary>
         public List<string> FeatureNames { get; set; }
 
+        /// <summary>Constructor.</summary>
         public StatsCalculator()
         {
             Irises = new List<Iris>();
         }
 
+        /// <summary>
+        /// Check if Iris flowers are loaded.
+        /// </summary>
+        /// <returns>True if flowers are loaded otherwise false.</returns>
         public bool IsLoaded()
         {
             return Irises.Count != 0;
         }
 
+        /// <summary>
+        /// Load Iris flowers from given file.
+        /// </summary>
+        /// <param name="path">Path of file containing Iris flowers.</param>
+        /// <exception cref="Files.Exceptions.FileNotFoundException">
+        /// Raised if file with given path does not exist.
+        /// </exception>
         public void LoadIrises(string path)
         {
             List<List<string>> csv = CSVFileManager.ReadCSVFile(path, ",");
@@ -33,6 +48,10 @@ namespace IrisFlowerCharts.Models
                 Irises.Add(new Iris(line));
         }
 
+        /// <summary>
+        /// Calculate average Iris flowers' features based on type.
+        /// </summary>
+        /// <returns>List of flowers with average features among same type flowers.</returns>
         public List<Iris> CalculateAverageIrises()
         {
             var averageIrises = new Dictionary<string, Iris>();
@@ -50,6 +69,10 @@ namespace IrisFlowerCharts.Models
             return averageIrises.Values.ToList();
         }
 
+        /// <summary>
+        /// Calculate euclidean distances between flowers' average features vectors.
+        /// </summary>
+        /// <returns>Dictionary with flowers' types as key and euclidean distance as value.</returns>
         public Dictionary<List<string>, double> CalculateEuclideanDistances()
         {
             var euclideanDistances = new Dictionary<List<string>, double>();
@@ -68,6 +91,10 @@ namespace IrisFlowerCharts.Models
             return euclideanDistances;
         }
 
+        /// <summary>
+        /// Sort Iris flowers basing on their type.
+        /// </summary>
+        /// <returns>Dictionary with type as key and list of flowers as value.</returns>
         private Dictionary<string, List<Iris>> SortIrisesByType()
         {
             var sortedIrises = new Dictionary<string, List<Iris>>();

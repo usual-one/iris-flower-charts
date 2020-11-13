@@ -2,26 +2,20 @@
 
 namespace IrisFlowerCharts
 {
-    /// <summary>
-    /// Класс, представляющий Ирис Фишера
-    /// </summary>
+    /// <summary>Fisher's Iris flower.</summary>
     public class Iris
     {
-        /// <summary>
-        /// Свойства Ириса
-        /// </summary>
+        /// <summary>Get flower's features.</summary>
         public MathLib.MathVector Features { get; }
 
-        /// <summary>
-        /// Тип Ириса
-        /// </summary>
+        /// <summary>Get flower's type.</summary>
         public string Type { get; }
 
         /// <summary>
-        /// Конструктор
+        /// Constructor.
         /// </summary>
-        /// <param name="features">Вектор свойств Ириса</param>
-        /// <param name="type">Тип Ириса</param>
+        /// <param name="features">Flower's features.</param>
+        /// <param name="type">Flower's type.</param>
         public Iris(MathLib.MathVector features, string type)
         {
             Features = features;
@@ -29,9 +23,9 @@ namespace IrisFlowerCharts
         }
 
         /// <summary>
-        /// Конструктор.
+        /// Constructor.
         /// </summary>
-        /// <param name="initList">Список строк для инициализации.</param>
+        /// <param name="initList">Initializer list that contains features and type.</param>
         public Iris(List<string> initList)
         {
             Type = initList[^1];

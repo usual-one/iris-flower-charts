@@ -3,14 +3,18 @@ using System.Linq;
 
 namespace IrisFlowerCharts.Files
 {
+    /// <summary>Services that performs operations with CSV-formatted files.</summary>
     static public class CSVFileManager
     {
         /// <summary>
-        /// Считывает разделенные значения из файла.
+        /// Read CSV-formatted file and get its content.
         /// </summary>
-        /// <param name="path">Путь к файлу.</param>
-        /// <param name="separator">Разделитель значений.</param>
-        /// <returns></returns>
+        /// <param name="path">Path to CSV-formatted file.</param>
+        /// <param name="separator">Separator that is used in file.</param>
+        /// <returns>Content of the file - list of separated lines.</returns>
+        /// <exception cref="Exceptions.FileNotFoundException">
+        /// Raised if file with given path does not exist.
+        /// </exception>
         static public List<List<string>> ReadCSVFile(string path, string separator)
         {
             List<string> lines = FileManager.ReadFile(path);
