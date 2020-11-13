@@ -195,26 +195,26 @@ namespace IrisFlowerCharts.ViewModels
                 SepalWidths.Add(new ColumnSeries
                 {
                     Title = iris.Type,
-                    Values = new ChartValues<double> 
-                    { 
+                    Values = new ChartValues<double>
+                    {
                         iris.Features[1]
                     }
-                });
+                }); 
                 SepalLengths.Add(new ColumnSeries
                 {
                     Title = iris.Type,
                     Values = new ChartValues<double> 
                     { 
                         iris.Features[0]
-                    } 
+                    }
                 });
                 PetalWidths.Add(new ColumnSeries
                 {
                     Title = iris.Type,
-                    Values = new ChartValues<double> 
-                    { 
+                    Values = new ChartValues<double>
+                    {
                         iris.Features[3]
-                    } 
+                    }
                 });
                 PetalLengths.Add(new ColumnSeries
                 {
@@ -222,7 +222,7 @@ namespace IrisFlowerCharts.ViewModels
                     Values = new ChartValues<double> 
                     { 
                         iris.Features[2]
-                    } 
+                    }
                 });
             }
 

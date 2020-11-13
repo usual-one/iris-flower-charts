@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="views\styles\Texts.xaml" />
                 <ResourceDictionary Source="views\styles\Buttons.xaml" />
                 <ResourceDictionary Source="views\styles\Containers.xaml" />
+                <ResourceDictionary Source="views\styles\Charts.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

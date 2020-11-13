@@ -108,7 +108,8 @@
                                        HorizontalAlignment="Left" />
                             <lvc:CartesianChart Grid.Row="1"
                                                 Margin="0 0 0 12"
-                                                Series="{Binding SepalWidths}">
+                                                Series="{Binding SepalWidths}"
+                                                TooltipTimeout="0">
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Style="{StaticResource NormalText}"
                                               LabelsRotation="-45"
@@ -129,6 +130,10 @@
                                         </lvc:Axis.Separator>
                                     </lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
+                                <lvc:CartesianChart.DataTooltip>
+                                    <lvc:DefaultTooltip SelectionMode="OnlySender"
+                                                        Style="{StaticResource BaseTooltip}"/>
+                                </lvc:CartesianChart.DataTooltip>
                             </lvc:CartesianChart>
                             
                         </Grid>
@@ -146,7 +151,8 @@
                                        Margin="0 0 0 15" />
                             <lvc:CartesianChart Grid.Row="1"
                                                 Margin="0 0 0 12"
-                                                Series="{Binding SepalLengths}">
+                                                Series="{Binding SepalLengths}"
+                                                TooltipTimeout="0">
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Style="{StaticResource NormalText}"
                                               LabelsRotation="-45"
@@ -167,6 +173,10 @@
                                         </lvc:Axis.Separator>
                                     </lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
+                                <lvc:CartesianChart.DataTooltip>
+                                    <lvc:DefaultTooltip SelectionMode="OnlySender"
+                                                        Style="{StaticResource BaseTooltip}"/>
+                                </lvc:CartesianChart.DataTooltip>
                             </lvc:CartesianChart>
                             
                         </Grid>
@@ -184,7 +194,8 @@
                                        Margin="0 0 0 15"/>
                             <lvc:CartesianChart Grid.Row="1"
                                                 Margin="0 0 0 12"
-                                                Series="{Binding PetalWidths}">
+                                                Series="{Binding PetalWidths}"
+                                                TooltipTimeout="0">
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Style="{StaticResource NormalText}"
                                               LabelsRotation="-45"
@@ -205,6 +216,10 @@
                                         </lvc:Axis.Separator>
                                     </lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
+                                <lvc:CartesianChart.DataTooltip>
+                                    <lvc:DefaultTooltip SelectionMode="OnlySender"
+                                                        Style="{StaticResource BaseTooltip}"/>
+                                </lvc:CartesianChart.DataTooltip>
                             </lvc:CartesianChart>
                             
                         </Grid>
@@ -222,7 +237,8 @@
                                        Margin="0 0 0 15"/>
                             <lvc:CartesianChart Grid.Row="1"
                                                 Margin="0 0 0 12"
-                                                Series="{Binding PetalLengths}">
+                                                Series="{Binding PetalLengths}"
+                                                TooltipTimeout="0">
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Style="{StaticResource NormalText}"
                                               LabelsRotation="-45"
@@ -244,6 +260,10 @@
                                         </lvc:Axis.Separator>
                                     </lvc:Axis>
                                 </lvc:CartesianChart.AxisY>
+                                <lvc:CartesianChart.DataTooltip>
+                                    <lvc:DefaultTooltip SelectionMode="OnlySender"
+                                                        Style="{StaticResource BaseTooltip}"/>
+                                </lvc:CartesianChart.DataTooltip>
                             </lvc:CartesianChart>
                             
                         </Grid>
@@ -273,8 +293,12 @@
                                   Width="300"
                                   Height="300"
                                   InnerRadius="127"
-                                  Series="{Binding IrisDistances}">
-                        
+                                  Series="{Binding IrisDistances}"
+                                  TooltipTimeout="0">
+                        <lvc:PieChart.DataTooltip>
+                            <lvc:DefaultTooltip SelectionMode="OnlySender"
+                                                Style="{StaticResource BaseTooltip}"/>
+                        </lvc:PieChart.DataTooltip>
                     </lvc:PieChart>
                 </Grid>
             </Border>
