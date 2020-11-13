@@ -2,68 +2,74 @@
 
 namespace MathLib
 {
-    /// <summary>
-    /// Интерфейс математического вектора.
-    /// </summary>
+    /// <summary>Math vector interface</summary>
     public interface IMathVector : IEnumerable
     {
-        /// <summary>
-        /// Получить размерность вектора (количество координат).
-        /// </summary>
+        /// <summary>Get the dimension of the vector (number of cooridnates).</summary>
         int Dimensions { get; }
 
-        /// <summary>
-        /// Рассчитать длину (модуль) вектора.
-        /// </summary>
+        /// <summary>Calculate magnitude (size) of the vector.</summary>
         double Length { get; }
 
         /// <summary>
-        /// Индексатор для доступа к элементам вектора. Нумерация с нуля.
+        /// Index (access elements by index). Numbering starts at 0.
         /// </summary>
-        /// <param name="i">Индекс для получения элемента.</param>
-        /// <returns>Координату по указанному индексу.</returns>
+        /// <param name="i">Element index.</param>
+        /// <returns>Vector coordinate with given index number.</returns>
         double this[int i] { get; set; }
 
         /// <summary>
-        /// Покомпонентное сложение с числом.
+        /// Inverts the vector componentwise (divides 1 over each component).
         /// </summary>
-        /// <param name="number">Число для сложения с вектором.</param>
-        /// <returns>Вектор - сумму текущего вектора и числа.</returns>
+        /// <returns>Inverted vector - new vector.</returns>
+        IMathVector Invert();
+
+        /// <summary>
+        /// Negates the vector componentwise.
+        /// </summary>
+        /// <returns>Negative vector - new vector.</returns>
+        IMathVector Negate();
+
+        /// <summary>
+        /// Sum with scalar componentwise.
+        /// </summary>
+        /// <param name="number">Scalar to sum with.</param>
+        /// <returns>Sum of current vector and given scalar - new vector.</returns>
         IMathVector SumNumber(double number);
 
         /// <summary>
-        /// Покомпонентное умножение на число.
+        /// Multiply by scalar componentwise.
         /// </summary>
-        /// <param name="number">Число для умножения с вектором.</param>
-        /// <returns>Вектор - произведение текущего вектора и числа.</returns>
+        /// <param name="number">Scalar to multiply by.</param>
+        /// <returns>Product of current vector and given scalar - new vector.</returns>
         IMathVector MultiplyNumber(double number);
 
         /// <summary>
-        /// Сложение с другим вектором.
+        /// Sum with another vector.
         /// </summary>
-        /// <param name="vector">Вектор для сложения с данным.</param>
-        /// <returns>Вектор - сумму текущего и данного векторов.</returns>
+        /// <param name="vector">Vector to sum with.</param>
+        /// <returns>Sum of current vector and given vector - new vector.</returns>
         IMathVector Sum(IMathVector vector);
 
         /// <summary>
-        /// Покомпонентное умножение с другим вектором.
+        /// Multiply with another vector componentwise.
         /// </summary>
-        /// <param name="vector">Вектор для умножения с данным.</param>
-        /// <returns>Вектор - векторное произведение текущего и данного векторов.</returns>
+        /// <param name="vector">Vector to multiply by.</param>
+        /// <returns>Product of current vector and given vector - new vector.</returns>
         IMathVector Multiply(IMathVector vector);
 
         /// <summary>
-        /// Скалярное умножение на другой вектор.
+        /// Calculate dot product with another vector.
         /// </summary>
-        /// <param name="vector">Вектор для умножения с данным.</param>
-        /// <returns>Скалярное произведение текущего и данного векторов.</returns>
-        double ScalarMultipy(IMathVector vector);
+        /// <param name="vector">Vector to calculate product with.</param>
+        /// <returns>Dot product between current vector and given vector - a number.</returns>
+        double ScalarMultiply(IMathVector vector);
 
         /// <summary>
-        /// Вычислить Евклидово расстояние до другого вектора.
+        /// Calculate euclidean distance with another vector.
         /// </summary>
-        /// <param name="vector">Вектор для вычисления расстояния от текущего.</param>
-        /// <returns>Евклидово расстояние до данного вектора.</returns>
+        /// <param name="vector">Vector to calculate distance with.</param>
+        /// <returns>Euclidean distance between current vector and given vector - a number.</returns>
         double CalcDistance(IMathVector vector);
     }
 }

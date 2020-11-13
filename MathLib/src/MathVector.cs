@@ -5,21 +5,15 @@ using System.Globalization;
 
 namespace MathLib
 {
-    /// <summary>
-    /// Реализация интерфейса IMathVector.
-    /// </summary>
+    /// <summary>Math vector implementation.</summary>
+    /// <inheritdoc cref="IMathVector"/> 
     public class MathVector : IMathVector
     {
-        /// <summary>
-        /// Список координат (элементов вектора).
-        /// </summary>
         private List<double> Coords;
 
-        /// <summary>
-        /// Индексатор для доступа к элементам вектора. Нумерация с нуля.
-        /// </summary>
-        /// <param name="i">Индекс для получения элемента.</param>
-        /// <returns>Координату по указанному индексу.</returns>
+        /// <exception cref="IndexOutOfRangeException">
+        /// Raised if vector does not have coordinate with given index.
+        /// </exception>
         public double this[int i] {
             get
             {
@@ -37,14 +31,8 @@ namespace MathLib
             }
         }
 
-        /// <summary>
-        /// Получить размерность вектора (количество координат).
-        /// </summary>
         public int Dimensions => Coords.Count;
 
-        /// <summary>
-        /// Рассчитать длину (модуль) вектора.
-        /// </summary>
         public double Length {
             get
             {
@@ -57,18 +45,18 @@ namespace MathLib
         }
 
         /// <summary>
-        /// Конструктор.
+        /// Constructor.
         /// </summary>
-        /// <param name="coords">Координаты для вектора.</param>
+        /// <param name="coords">Initial vector coordinates.</param>
         public MathVector(List<double> coords)
         {
             Coords = coords;
         }
 
         /// <summary>
-        /// Конструктор.
+        /// Constructor.
         /// </summary>
-        /// <param name="coords">Координаты для вектора.</param>
+        /// <param name="coords">Initial vector coordinates.</param>
         public MathVector(List<String> coords)
         {
             Coords = new List<double>();
@@ -78,11 +66,10 @@ namespace MathLib
             }
         }
 
-        /// <summary>
-        /// Вычислить Евклидово расстояние до другого вектора.
-        /// </summary>
-        /// <param name="vector">Вектор для вычисления расстояния от текущего.</param>
-        /// <returns>Евклидово расстояние до данного вектора.</returns>
+        /// <inheritdoc cref="IMathVector.CalcDistance(IMathVector)"/>
+        /// <exception cref="ArithmeticException">
+        /// Raised if vectors' dimensions do not match.
+        /// </exception>
         public double CalcDistance(IMathVector vector)
         {
             if (Dimensions != vector.Dimensions)
@@ -96,14 +83,18 @@ namespace MathLib
         }
 
         /// <summary>
-        /// Возвращает енумератор, с помощью которого можно проитерироваться по вектору. 
+        /// Returns enumerator for iterating through the vector. 
         /// </summary>
-        /// <returns>Енумератор для итерации по вектору.</returns>
+        /// <returns>Enumerator for iterating through the vector.</returns>
         public IEnumerator GetEnumerator()
         {
             return Coords.GetEnumerator();
         }
 
+        /// <inheritdoc cref="IMathVector.Invert"/>
+        /// <exception cref="DivideByZeroException">
+        /// Raised if at least 1 coordinate equals to 0.
+        /// </exception>
         public IMathVector Invert()
         {
             var newCoords = new List<double>();
@@ -117,11 +108,10 @@ namespace MathLib
             return new MathVector(newCoords);
         }
 
-        /// <summary>
-        /// Покомпонентное умножение с другим вектором.
-        /// </summary>
-        /// <param name="vector">Вектор для умножения с данным.</param>
-        /// <returns>Вектор - векторное произведение текущего и данного векторов.</returns>
+        /// <inheritdoc cref="IMathVector.Multiply(IMathVector)"/>
+        /// <exception cref="ArithmeticException">
+        /// Raised if vectors' dimensions do not match.
+        /// </exception>
         public IMathVector Multiply(IMathVector vector)
         {
             if (Dimensions != vector.Dimensions)
@@ -134,11 +124,6 @@ namespace MathLib
             return new MathVector(newCoords);
         }
 
-        /// <summary>
-        /// Покомпонентное умножение на число.
-        /// </summary>
-        /// <param name="number">Число для умножения с вектором.</param>
-        /// <returns>Вектор - произведение текущего вектора и числа.</returns>
         public IMathVector MultiplyNumber(double number)
         {
             var newCoords = new List<double>();
@@ -148,10 +133,6 @@ namespace MathLib
             return new MathVector(newCoords);
         }
 
-        /// <summary>
-        /// Покомпонентное отрицание.
-        /// </summary>
-        /// <returns>Вектор с координатами противоположными изначальным.</returns>
         public IMathVector Negate()
         {
             var newCoords = new List<double>();
@@ -161,12 +142,7 @@ namespace MathLib
             return new MathVector(newCoords);
         }
 
-        /// <summary>
-        /// Скалярное умножение на другой вектор.
-        /// </summary>
-        /// <param name="vector">Вектор для умножения с данным.</param>
-        /// <returns>Скалярное произведение текущего и данного векторов.</returns>
-        public double ScalarMultipy(IMathVector vector)
+        public double ScalarMultiply(IMathVector vector)
         {
             IMathVector product = Multiply(vector);
             double coordSum = 0;
@@ -176,11 +152,10 @@ namespace MathLib
             return coordSum;
         }
 
-        /// <summary>
-        /// Сложение с другим вектором.
-        /// </summary>
-        /// <param name="vector">Вектор для сложения с данным.</param>
-        /// <returns>Вектор - сумму текущего и данного векторов.</returns>
+        /// <inheritdoc cref="IMathVector.Sum(IMathVector)"/>
+        /// <exception cref="ArithmeticException">
+        /// Raised if vectors' dimensions do not match.
+        /// </exception>
         public IMathVector Sum(IMathVector vector)
         {
             if (Dimensions != vector.Dimensions)
@@ -193,11 +168,6 @@ namespace MathLib
             return new MathVector(newCoords);
         }
 
-        /// <summary>
-        /// Покомпонентное сложение с числом.
-        /// </summary>
-        /// <param name="number">Число для сложения с вектором.</param>
-        /// <returns>Вектор - сумму текущего вектора и числа.</returns>
         public IMathVector SumNumber(double number)
         {
             var newCoords = new List<double>();
@@ -208,84 +178,112 @@ namespace MathLib
         }
 
         /// <summary>
-        /// Покомпонентное сложение с другим вектором.
+        /// Sum between 2 vectors componentwise. Same as Sum().
         /// </summary>
+        /// <param name="operand1">First addend.</param>
+        /// <param name="operand2">Second addend.</param>
+        /// <returns>Sum of given vectors - new vector.</returns>
         public static IMathVector operator +(MathVector operand1, MathVector operand2)
         {
             return operand1.Sum(operand2);
         }
 
         /// <summary>
-        /// Покомпонентное сложение с числом.
+        /// Sum between vector and scalar componentwise. Same as SumNumber().
         /// </summary>
+        /// <param name="vector">Vector addend.</param>
+        /// <param name="number">Scalar addend.</param>
+        /// <returns>Sum of given vector and scalar - new vector.</returns>
         public static IMathVector operator +(MathVector vector, double number)
         {
             return vector.SumNumber(number);
         }
 
         /// <summary>
-        /// Покомпонентное отрицание.
+        /// Negate vector componentwise. Same as Negate().
         /// </summary>
+        /// <param name="operand">Vector to negate.</param>
+        /// <returns>Negative vector - new vector.</returns>
         public static IMathVector operator -(MathVector operand)
         {
             return operand.Negate();
         }
 
         /// <summary>
-        /// Покомпонентное вычитание с другим вектором.
+        /// Subtract one vector from another componentwise. 
         /// </summary>
+        /// <param name="operand1">Minuend vector.</param>
+        /// <param name="operand2">Subtrahend vector.</param>
+        /// <returns>Difference between given vectors - new vector.</returns>
         public static IMathVector operator -(MathVector operand1, MathVector operand2)
         {
-
             return operand1.Sum(operand2.Negate());
         }
 
         /// <summary>
-        /// Покомпонентное вычитание с числом.
+        /// Subtract scalar from vector componentwise.
         /// </summary>
+        /// <param name="vector">Vector minuend.</param>
+        /// <param name="number">Scalar subtrahend.</param>
+        /// <returns>Result of subtraction - new vector.</returns>
         public static IMathVector operator -(MathVector vector, double number)
         {
             return vector + (-number);
         }
 
         /// <summary>
-        /// Покомпонентное умножение с другим вектором.
+        /// Multiply 2 vectors componentwise. Same as Multiply().
         /// </summary>
+        /// <param name="operand1">Multiplier vector.</param>
+        /// <param name="operand2">Multiplicant vector.</param>
+        /// <returns>Componentwise product between vectors - new vector.</returns>
         public static IMathVector operator *(MathVector operand1, MathVector operand2)
         {
             return operand1.Multiply(operand2);
         }
 
         /// <summary>
-        /// Покомпонентное умножение с числом.
+        /// Multiply vector with scalar componentwise. Same as MultiplyNumber(). 
         /// </summary>
+        /// <param name="vector">Vector multiplicant.</param>
+        /// <param name="number">Scalar multiplier.</param>
+        /// <returns>Componentwise product of vector and scalar - new vector.</returns>
         public static IMathVector operator *(MathVector vector, double number)
         {
             return vector.MultiplyNumber(number);
         }
 
         /// <summary>
-        /// Покомпонентное деление с другим вектором.
+        /// Divide 2 vectors componentwise.
         /// </summary>
+        /// <param name="operand1">Dividend vector.</param>
+        /// <param name="operand2">Divisor vector.</param>
+        /// <returns>Componentwise ratio between vectors - new vector.</returns>
         public static IMathVector operator /(MathVector operand1, MathVector operand2)
         {
             return operand1.Multiply(operand2.Invert());
         }
 
         /// <summary>
-        /// Покомпонентное деление с числом.
+        /// Divide vector by scalar componentwise.
         /// </summary>
+        /// <param name="vector">Vector dividend.</param>
+        /// <param name="number">Scalar divisor.</param>
+        /// <returns>Componentwise ratio between vector and scalar - new vector.</returns>
         public static IMathVector operator /(MathVector vector, double number)
         {
             return vector.MultiplyNumber(1 / number);
         }
 
         /// <summary>
-        /// Скалярное умножение двух векторов.
+        /// Calculate dot product between 2 vectors. Same as ScalarMultiply().
         /// </summary>
+        /// <param name="operand1">First factor vector.</param>
+        /// <param name="operand2">Second factor vector.</param>
+        /// <returns>Dot product between vectors - a number.</returns>
         public static double operator %(MathVector operand1, MathVector operand2)
         {
-            return operand1.ScalarMultipy(operand2);
+            return operand1.ScalarMultiply(operand2);
         }
 
     }
