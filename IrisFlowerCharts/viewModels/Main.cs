@@ -1,26 +1,28 @@
-﻿using Accessibility;
-using IrisFlowerCharts.Models;
+﻿using IrisFlowerCharts.Models;
 using LiveCharts;
 using LiveCharts.Wpf;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Windows.Input;
 
 namespace IrisFlowerCharts.ViewModels
 {
+    /// <summary>Main application view model class.</summary>
     public class Main : Base
     {
-        private StatsCalculator Calculator;
+        /// <summary>Statistics metrics calculator.</summary>
+        private readonly StatsCalculator Calculator;
 
+        /// <summary>Iris flowers with average features.</summary>
         private List<Iris> averageIrises;
 
+        /// <summary>Euclidean distances between average Iris flowers' features.</summary>
         private Dictionary<List<string>, double> euclideanDistances;
 
         private SeriesCollection sepalWidths;
 
+        /// <summary>Get sepal widths chart values.</summary>
         public SeriesCollection SepalWidths 
         { 
             get { return sepalWidths; }
@@ -33,6 +35,7 @@ namespace IrisFlowerCharts.ViewModels
 
         private SeriesCollection sepalLengths;
 
+        /// <summary>Get sepal lengths chart values.</summary>
         public SeriesCollection SepalLengths
         { 
             get { return sepalLengths; }
@@ -45,6 +48,7 @@ namespace IrisFlowerCharts.ViewModels
 
         private SeriesCollection petalWidths;
 
+        /// <summary>Get petal widths chart values.</summary>
         public SeriesCollection PetalWidths
         { 
             get { return petalWidths; }
@@ -57,6 +61,7 @@ namespace IrisFlowerCharts.ViewModels
 
         private SeriesCollection petalLengths;
 
+        /// <summary>Get petal lengths chart values.</summary>
         public SeriesCollection PetalLengths
         { 
             get { return petalLengths; }
@@ -69,6 +74,7 @@ namespace IrisFlowerCharts.ViewModels
 
         private SeriesCollection irisDistances;
 
+        /// <summary>Get euclidean distances as chart values.</summary>
         public SeriesCollection IrisDistances
         {
             get { return irisDistances; }
@@ -81,6 +87,7 @@ namespace IrisFlowerCharts.ViewModels
 
         private List<string> irisTypes;
 
+        /// <summary>Get types of Iris flowers.</summary>
         public List<string> IrisTypes
         {
             get { return irisTypes; }
@@ -91,12 +98,16 @@ namespace IrisFlowerCharts.ViewModels
             }
         }
 
+        /// <summary>Close start window view.</summary>
         public Action CloseStartWindowAction { get; set; }
 
+        /// <summary>Open main window view.</summary>
         public Action ShowMainWindowAction { get; set; }
 
+        /// <summary>Open error window view.</summary>
         public Action ShowErrorWindowAction { get; set; } 
 
+        /// <summary>Constructor</summary>
         public Main()
         {
             Calculator = new StatsCalculator();
@@ -104,6 +115,7 @@ namespace IrisFlowerCharts.ViewModels
             euclideanDistances = new Dictionary<List<string>, double>();
         }
 
+        /// <summary>Load Iris flowers, calculate statistics metrics and chart values.</summary>
         public ICommand LoadStatsCommand
         {
             get
@@ -134,6 +146,7 @@ namespace IrisFlowerCharts.ViewModels
 
         private Commands.DelegateCommand loadStatsCommand;
 
+        /// <summary>Update Iris flowers, recalculate statistics metrics and chart values.</summary>
         public ICommand ReloadStatsCommand
         {
             get
@@ -161,6 +174,7 @@ namespace IrisFlowerCharts.ViewModels
 
         private Commands.DelegateCommand reloadStatsCommand;
 
+        /// <summary>Calculate statistics metrics based on loaded Iris flowers.</summary>
         private void CalculateStats()
         {
             averageIrises = Calculator.CalculateAverageIrises();
@@ -181,6 +195,7 @@ namespace IrisFlowerCharts.ViewModels
 
         }
 
+        /// <summary>Fill chart values with statistics metrics.</summary>
         private void CreateCharts()
         {
             SepalWidths = new SeriesCollection();
@@ -246,6 +261,7 @@ namespace IrisFlowerCharts.ViewModels
 
         }
 
+        /// <summary>Open file dialog and load chosen Iris flowers file.</summary>
         private void LoadFile()
         {
             OpenFileDialog fileDialog = new OpenFileDialog
