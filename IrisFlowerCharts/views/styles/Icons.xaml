@@ -2,12 +2,78 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:IrisFlowerCharts.views.styles">
 
+    <Style x:Key="ToolbarIcon" TargetType="Path">
+        <Setter Property="Fill" Value="{StaticResource GreyTextBrush}" />
+        <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Duration="0:0:0.3" 
+                                            Storyboard.TargetProperty="(Fill).(SolidColorBrush.Color)"
+                                            From="{StaticResource GreyTextColor}"
+                                            To="{StaticResource BlueTextColor}" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Duration="0:0:0.3"
+                                            Storyboard.TargetProperty="(Fill).(SolidColorBrush.Color)"
+                                            From="{StaticResource BlueTextColor}"
+                                            To="{StaticResource GreyTextColor}" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+
+            <Trigger Property="IsMouseCaptureWithin" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.5"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                             From="1"
+                                             To="0.2" />
+                            <DoubleAnimation Duration="0:0:0.5"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                             From="1"
+                                             To="0.2" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.5"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                             From="0.2"
+                                             To="1" />
+                            <DoubleAnimation Duration="0:0:0.5"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                             From="0.2"
+                                             To="1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
     <Grid x:Key="MinimizeIcon">
         <Grid>
             <Viewbox Stretch="Uniform" 
                      VerticalAlignment="Bottom">
                 <Path Data="M13.9773 0H1.02273C0.458181 0 0 0.444711 0 0.992662V1.6544C0 2.20235 0.458181 2.64706 1.02273 2.64706H13.9773C14.5418 2.64706 15 2.20235 15 1.6544V0.992662C15 0.444711 14.5418 0 13.9773 0Z"
-                      Fill="{StaticResource GreyTextBrush}" />
+                      Style="{StaticResource ToolbarIcon}" />
             </Viewbox>
         </Grid>
     </Grid>
@@ -15,7 +81,7 @@
     <Grid x:Key="CloseIcon">
         <Viewbox Stretch="Uniform">
             <Path Data="M9.97501 7.50048L14.6155 2.86003C15.1282 2.34731 15.1282 1.51605 14.6155 1.00413L13.9968 0.385503C13.4839 -0.127379 12.6527 -0.127379 12.1408 0.385503L7.50048 5.0258L2.86003 0.384541C2.34731 -0.12818 1.51605 -0.12818 1.00413 0.384541L0.384541 1.00317C-0.12818 1.51605 -0.12818 2.34731 0.384541 2.85923L5.0258 7.50048L0.385503 12.1408C-0.127379 12.6537 -0.127379 13.4849 0.385503 13.9968L1.00413 14.6155C1.51686 15.1282 2.34811 15.1282 2.86003 14.6155L7.50048 9.97501L12.1408 14.6155C12.6537 15.1282 13.4849 15.1282 13.9968 14.6155L14.6155 13.9968C15.1282 13.4839 15.1282 12.6527 14.6155 12.1408L9.97501 7.50048Z"
-                  Fill="{StaticResource GreyTextBrush}" />
+                  Style="{StaticResource ToolbarIcon}" />
         </Viewbox>
     </Grid>
 

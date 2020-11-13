@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Error"
         Height="140" Width="300"
-        WindowStartupLocation="CenterOwner"
+        WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         ResizeMode="NoResize">
     <Grid Style="{StaticResource MainContainer}">

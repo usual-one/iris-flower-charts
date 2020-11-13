@@ -10,6 +10,11 @@ namespace IrisFlowerCharts.Models
 
         public List<string> FeatureNames { get; set; }
 
+        public StatsCalculator()
+        {
+            Irises = new List<Iris>();
+        }
+
         public bool IsLoaded()
         {
             return Irises.Count != 0;

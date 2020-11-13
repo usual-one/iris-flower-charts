@@ -114,6 +114,8 @@ namespace IrisFlowerCharts.ViewModels
                         try
                         {
                             LoadFile();
+                            if (!Calculator.IsLoaded())
+                                return;
                             CalculateStats();
                             CreateCharts();
                         }
@@ -142,6 +144,8 @@ namespace IrisFlowerCharts.ViewModels
                         try
                         {
                             LoadFile();
+                            if (!Calculator.IsLoaded())
+                                return;
                             CalculateStats();
                             CreateCharts();
                         }

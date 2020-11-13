@@ -3,9 +3,7 @@
                     xmlns:local="clr-namespace:IrisFlowerCharts.views.styles">
 
 
-        
     <Style x:Key="BaseButton" TargetType="Button">
-        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="{StaticResource GreyTextBrush}" />
 
         <Setter Property="FontFamily" Value="{StaticResource BaseFontFamily}" />
@@ -15,40 +13,93 @@
         <Setter Property="Width" Value="150" />
         <Setter Property="Height" Value="35" />
 
+        <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+        <Setter Property="RenderTransform">
+            <Setter.Value>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+            </Setter.Value>
+        </Setter>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border 
-                        BorderBrush="{StaticResource GreyTextBrush}"
-                        CornerRadius="10"
-                        BorderThickness="1">
-                        <ContentPresenter 
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center" />
-                    </Border>
+                    <Grid Background="Transparent">
+                        <Border 
+                            Name="BaseButtonBorder"
+                            BorderBrush="{StaticResource GreyTextBrush}"
+                            CornerRadius="10"
+                            BorderThickness="1">
+                            <ContentPresenter 
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center" />
+                        </Border>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation 
+                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" 
+                                            To="{StaticResource BlueTextColor}" 
+                                            Duration="0:0:0.3" />
+                                        <ColorAnimation 
+                                            Storyboard.TargetName="BaseButtonBorder"
+                                            Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)" 
+                                            To="{StaticResource BlueTextColor}" 
+                                            Duration="0:0:0.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation 
+                                            Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" 
+                                            To="{StaticResource GreyTextColor}" 
+                                            Duration="0:0:0.3" />
+                                        <ColorAnimation 
+                                            Storyboard.TargetName="BaseButtonBorder"
+                                            Storyboard.TargetProperty="(BorderBrush).(SolidColorBrush.Color)" 
+                                            To="{StaticResource GreyTextColor}" 
+                                            Duration="0:0:0.3" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate> 
             </Setter.Value>
         </Setter>
 
         <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
+            <Trigger Property="IsPressed" Value="True">
                 <Trigger.EnterActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <ColorAnimation 
-                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" 
-                                To="{StaticResource BlueTextColor}" 
-                                Duration="0:0:0.3" />
+                            <DoubleAnimation Duration="0:0:0.1"
+                                             From="1"
+                                             To="0.95"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)" />
+                            <DoubleAnimation Duration="0:0:0.1"
+                                             From="1"
+                                             To="0.95"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)" />
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.EnterActions>
                 <Trigger.ExitActions>
                     <BeginStoryboard>
                         <Storyboard>
-                            <ColorAnimation 
-                                Storyboard.TargetProperty="(Foreground).(SolidColorBrush.Color)" 
-                                To="{StaticResource GreyTextColor}" 
-                                Duration="0:0:0.3" />
+                            <DoubleAnimation Duration="0:0:0.1"
+                                             From="0.95"
+                                             To="1"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)" />
+                            <DoubleAnimation Duration="0:0:0.1"
+                                             From="0.95"
+                                             To="1"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)" />
                         </Storyboard>
                     </BeginStoryboard>
                 </Trigger.ExitActions>
