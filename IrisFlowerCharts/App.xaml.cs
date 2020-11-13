@@ -1,17 +1,10 @@
-﻿using IrisFlowerCharts.Views;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows;
 
 namespace IrisFlowerCharts
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+    /// <summary>Interaction logic for global application.</summary>
+    /// <inheritdoc cref="Application"/>
     public partial class App : Application
     {
         protected override void OnStartup(StartupEventArgs e)

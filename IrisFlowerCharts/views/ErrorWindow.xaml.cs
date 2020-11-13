@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace IrisFlowerCharts.Views
 {
-    /// <summary>
-    /// Interaction logic for ErrorWindow.xaml
-    /// </summary>
+    /// <summary>Interaction logic for error window view. </summary>
     public partial class ErrorWindow : Window
     {
+        /// <summary>Constructor.</summary>
         public ErrorWindow()
         {
+            
             InitializeComponent();
 
             CloseButton.MouseDown += (sender, e) =>
