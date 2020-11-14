@@ -19,7 +19,14 @@ namespace MathLib
         double this[int i] { get; set; }
 
         /// <summary>
-        /// Inverts the vector componentwise (divides 1 over each component).
+        /// Check if given vector is equal to current vector.
+        /// </summary>
+        /// <param name="vector">Vector to check equality with.</param>
+        /// <returns>Result of equality operation - boolean value.</returns>
+        bool Equals(IMathVector vector);
+
+        /// <summary>
+        /// Invert the vector componentwise (divides 1 over each component).
         /// </summary>
         /// <returns>Inverted vector - new vector.</returns>
         IMathVector Invert();

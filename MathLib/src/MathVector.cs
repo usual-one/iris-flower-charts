@@ -17,14 +17,16 @@ namespace MathLib
         public double this[int i] {
             get
             {
-                if (i >= Length || i < 0)
+                if (i >= Dimensions || i < 0)
+                {
                     throw new IndexOutOfRangeException();
+                }
 
                 return Coords[i];
             }
             set
             {
-                if (i >= Length || i < 0)
+                if (i >= Dimensions || i < 0)
                     throw new IndexOutOfRangeException();
 
                 Coords[i] = value;
@@ -77,7 +79,7 @@ namespace MathLib
 
             double squareSum = 0;
             for (int i = 0; i < Dimensions; i++)
-                squareSum = Math.Pow(this[i] - vector[i], 2);
+                squareSum += Math.Pow(this[i] - vector[i], 2);
 
             return Math.Sqrt(squareSum);
         }
@@ -137,11 +139,15 @@ namespace MathLib
         {
             var newCoords = new List<double>();
             for (int i = 0; i < Dimensions; i++)
-                newCoords.Add(this[i]);
+                newCoords.Add(-this[i]);
 
             return new MathVector(newCoords);
         }
 
+        /// <inheritdoc cref="IMathVector.ScalarMultiply(IMathVector)"/>
+        /// <exception cref="ArithmeticException">
+        /// Raised if vectors' dimesions do not match.
+        /// </exception>
         public double ScalarMultiply(IMathVector vector)
         {
             IMathVector product = Multiply(vector);
@@ -175,6 +181,19 @@ namespace MathLib
                 newCoords.Add(this[i] + number);
 
             return new MathVector(newCoords);
+        }
+
+        public bool Equals(IMathVector vector)
+        {
+            if (Dimensions != vector.Dimensions)
+                return false;
+
+            for (int i = 0; i < Dimensions; i++)
+            {
+                if (this[i] != vector[i])
+                    return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -259,6 +278,9 @@ namespace MathLib
         /// <param name="operand1">Dividend vector.</param>
         /// <param name="operand2">Divisor vector.</param>
         /// <returns>Componentwise ratio between vectors - new vector.</returns>
+        /// <exception cref="DivideByZeroException">
+        /// Raised if at least 1 coordinate of divisor vector equals to zero.
+        /// </exception>
         public static IMathVector operator /(MathVector operand1, MathVector operand2)
         {
             return operand1.Multiply(operand2.Invert());
@@ -270,8 +292,13 @@ namespace MathLib
         /// <param name="vector">Vector dividend.</param>
         /// <param name="number">Scalar divisor.</param>
         /// <returns>Componentwise ratio between vector and scalar - new vector.</returns>
+        /// <exception cref="DivideByZeroException">
+        /// Raised if given number equals to zero.
+        /// </exception>
         public static IMathVector operator /(MathVector vector, double number)
         {
+            if (number == 0)
+                throw new DivideByZeroException("Cannot divide vector by zero.");
             return vector.MultiplyNumber(1 / number);
         }
 
@@ -286,5 +313,26 @@ namespace MathLib
             return operand1.ScalarMultiply(operand2);
         }
 
+        /// <summary>
+        /// Check if vectors are equal. Same as Equals().
+        /// </summary>
+        /// <param name="operand1">First compared vector.</param>
+        /// <param name="operand2">Second compared vector.</param>
+        /// <returns>Result of equality operation - boolean value.</returns>
+        public static bool operator ==(MathVector operand1, MathVector operand2)
+        {
+            return operand1.Equals(operand2);
+        }
+
+        /// <summary>
+        /// Check if vectors are not equal.
+        /// </summary>
+        /// <param name="operand1">First compared vector.</param>
+        /// <param name="operand2">Second compared vector.</param>
+        /// <returns>Result of inequality operation - boolean value.</returns>
+        public static bool operator !=(MathVector operand1, MathVector operand2)
+        {
+            return !operand1.Equals(operand2);
+        }
     }
 }
