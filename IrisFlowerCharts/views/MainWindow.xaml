@@ -113,7 +113,7 @@
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Style="{StaticResource NormalText}"
                                               LabelsRotation="-45"
-                                              Labels="{Binding IrisTypes}">
+                                              Labels="">
                                         <lvc:Axis.Separator>
                                             <lvc:Separator IsEnabled="False"
                                                            Step="1" />
@@ -156,7 +156,7 @@
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Style="{StaticResource NormalText}"
                                               LabelsRotation="-45"
-                                              Labels="{Binding IrisTypes}">
+                                              Labels="">
                                         <lvc:Axis.Separator>
                                             <lvc:Separator IsEnabled="False"
                                                            Step="1" />
@@ -199,7 +199,7 @@
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Style="{StaticResource NormalText}"
                                               LabelsRotation="-45"
-                                              Labels="{Binding IrisTypes}">
+                                              Labels="">
                                         <lvc:Axis.Separator>
                                             <lvc:Separator IsEnabled="False"
                                                            Step="1" />
@@ -242,7 +242,7 @@
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis Style="{StaticResource NormalText}"
                                               LabelsRotation="-45"
-                                              Labels="{Binding IrisTypes}"
+                                              Labels=""
              >
                                         <lvc:Axis.Separator>
                                             <lvc:Separator IsEnabled="False"
