@@ -8,3 +8,4 @@ WPF charts example for BMSTU APL course
 - C#
 - .NET Core
 - WPF
+- LiveCharts
