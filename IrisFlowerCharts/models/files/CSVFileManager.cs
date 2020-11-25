@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace IrisFlowerCharts.Files
@@ -12,7 +13,7 @@ namespace IrisFlowerCharts.Files
         /// <param name="path">Path to CSV-formatted file.</param>
         /// <param name="separator">Separator that is used in file.</param>
         /// <returns>Content of the file - list of separated lines.</returns>
-        /// <exception cref="Exceptions.FileNotFoundException">
+        /// <exception cref="FileNotFoundException">
         /// Raised if file with given path does not exist.
         /// </exception>
         static public List<List<string>> ReadCSVFile(string path, string separator)
