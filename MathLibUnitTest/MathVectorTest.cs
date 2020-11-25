@@ -8,423 +8,604 @@ namespace MathLibUnitTest
     [TestClass]
     public class MathVectorTest
     {
+
         [TestMethod]
-        public void TestIndexing()
+        public void TestDimensionsEmpty()
+        {
+            var vector = new MathVector(new List<double>());
+            int assumed = 0;
+
+            int result = vector.Dimensions;
+
+            Assert.AreEqual(assumed, result);
+        }
+
+        [TestMethod]
+        public void TestDimensionsSingle()
+        {
+            var vector = new MathVector(new List<double>()
+            {
+                1
+            });
+            int assumed = 1;
+
+            int result = vector.Dimensions;
+
+            Assert.AreEqual(assumed, result);
+        }
+
+        [TestMethod]
+        public void TestDimensionsMultiple()
         {
             var vector = new MathVector(new List<double>()
             {
                 1,
-                2,
-                3,
-                4
-            });
-            Assert.AreEqual(1, vector[0]);
-            Assert.AreEqual(4, vector[3]);
-            Assert.ThrowsException<IndexOutOfRangeException>(() => vector[-1]);
-            Assert.ThrowsException<IndexOutOfRangeException>(() => vector[4]);
-        }
-
-        [TestMethod]
-        public void TestDimensions()
-        {
-            var vector = new MathVector(new List<double>());
-            Assert.AreEqual(0, vector.Dimensions);
-
-            vector = new MathVector(new List<double>()
-            {
-                1
-            });
-            Assert.AreEqual(1, vector.Dimensions);
-
-            vector = new MathVector(new List<double>()
-            {
-                1,
                 1,
                 1
             });
-            Assert.AreEqual(3, vector.Dimensions);
+            int assumed = 3;
 
+            int result = vector.Dimensions;
+
+            Assert.AreEqual(assumed, result);
         }
 
         [TestMethod]
-        public void TestLength()
+        public void TestLengthEmpty()
         {
             var vector = new MathVector(new List<double>());
-            Assert.AreEqual(0, vector.Length);
-            
-            vector = new MathVector(new List<double>()
+            double assumed = 0;
+
+            double result = vector.Length;
+
+            Assert.AreEqual(assumed, result);
+        }
+
+        [TestMethod]
+        public void TestLengthSingle()
+        {
+            var vector = new MathVector(new List<double>()
             {
                 7
             });
-            Assert.AreEqual(7, vector.Length);
+            double assumed = 7;
 
-            vector = new MathVector(new List<double>()
-            {
-                3,
-                4
-            });
-            Assert.AreEqual(5, vector.Length);
+            double result = vector.Length;
 
-            vector = new MathVector(new List<double>()
+            Assert.AreEqual(assumed, result);
+        }
+
+        [TestMethod]
+        public void TestLengthMultiple()
+        {
+            var vector = new MathVector(new List<double>()
             {
                 4,
                 -4,
                 2
             });
-            Assert.AreEqual(6, vector.Length);
+            double assumed = 6;
+
+            double result = vector.Length;
+
+            Assert.AreEqual(assumed, result);
         }
 
         [TestMethod]
-        public void TestEquals()
+        public void TestEqualsEmpty()
         {
             var vector1 = new MathVector(new List<double>());
             var vector2 = new MathVector(new List<double>());
-            Assert.IsTrue(vector1.Equals(vector2));
-            Assert.IsTrue(vector1 == vector2);
-            Assert.IsFalse(vector1 != vector2);
-            Assert.AreEqual(vector1.Equals(vector2), vector2.Equals(vector1));
 
-            vector2 = new MathVector(new List<double>()
-            {
-                1,
-                2,
-                3
-            });
-            Assert.IsFalse(vector1.Equals(vector2));
-            Assert.IsFalse(vector1 == vector2);
-            Assert.IsTrue(vector1 != vector2);
-            Assert.AreEqual(vector1.Equals(vector2), vector2.Equals(vector1));
+            bool vector1Result = vector1.Equals(vector2);
+            bool vector2Result = vector2.Equals(vector1);
 
-            vector1 = new MathVector(new List<double>()
-            {
-                1,
-                2,
-                4
-            });
-            Assert.IsFalse(vector1.Equals(vector2));
-            Assert.IsFalse(vector1 == vector2);
-            Assert.IsTrue(vector1 != vector2);
-            Assert.AreEqual(vector1.Equals(vector2), vector2.Equals(vector1));
-
-            vector1 = new MathVector(new List<double>()
-            {
-                1,
-                2,
-                3
-            });
-            Assert.IsTrue(vector1.Equals(vector2));
-            Assert.IsTrue(vector1 == vector2);
-            Assert.IsFalse(vector1 != vector2);
-            Assert.AreEqual(vector1.Equals(vector2), vector2.Equals(vector1));
+            Assert.IsTrue(vector1Result);
+            Assert.AreEqual(vector1Result, vector2Result);
         }
 
         [TestMethod]
-        public void TestInvert()
+        public void TestEqualsDifferentDimensions()
         {
-            var vector = new MathVector(new List<double>());
-            var assumedVector = new MathVector(new List<double>());
-            Assert.IsTrue(assumedVector.Equals(vector.Invert()));
+            var vector1 = new MathVector(new List<double>());
+            var vector2 = new MathVector(new List<double>()
+            {
+                1,
+                2,
+                3
+            });
 
-            vector = new MathVector(new List<double>()
+            bool vector1Result = vector1.Equals(vector2);
+            bool vector2Result = vector2.Equals(vector1);
+
+            Assert.IsFalse(vector1Result);
+            Assert.AreEqual(vector1Result, vector2Result);
+        }
+
+        [TestMethod]
+        public void TestEqualsTrue()
+        {
+            var vector1 = new MathVector(new List<double>()
+            {
+                1,
+                2,
+                3
+            });
+            var vector2 = new MathVector(new List<double>()
+            {
+                1,
+                2,
+                3
+            });
+
+            bool vector1Result = vector1.Equals(vector2);
+            bool vector2Result = vector2.Equals(vector1);
+
+            Assert.IsTrue(vector1Result);
+            Assert.AreEqual(vector1Result, vector2Result);
+        }
+
+        [TestMethod]
+        public void TestEqualsFalse()
+        {
+            var vector1 = new MathVector(new List<double>()
             {
                 1,
                 2,
                 4
             });
-            assumedVector = new MathVector(new List<double>()
+            var vector2 = new MathVector(new List<double>()
+            {
+                1,
+                2,
+                3
+            });
+
+            bool vector1Result = vector1.Equals(vector2);
+            bool vector2Result = vector2.Equals(vector1);
+
+            Assert.IsFalse(vector1Result);
+            Assert.AreEqual(vector1Result, vector2Result);
+        }
+
+        [TestMethod]
+        public void TestInvertEmpty()
+        {
+            var vector = new MathVector(new List<double>());
+            var assumedVector = new MathVector(new List<double>());
+
+            var resultVector = (MathVector) vector.Invert();
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
+
+        [TestMethod]
+        public void TestInvertMultiple()
+        {
+            var vector = new MathVector(new List<double>()
+            {
+                1,
+                2,
+                4
+            });
+            var assumedVector = new MathVector(new List<double>()
             {
                 1,
                 0.5,
                 0.25
             });
-            Assert.IsTrue(assumedVector.Equals(vector.Invert()));
 
-            vector = new MathVector(new List<double>()
+            var resultVector = (MathVector) vector.Invert();
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
+
+        [TestMethod]
+        public void TestInvertException()
+        {
+            var vector = new MathVector(new List<double>()
             {
                 0,
                 1
             });
+
             Assert.ThrowsException<DivideByZeroException>(() => vector.Invert());
         }
 
         [TestMethod]
-        public void TestNegate()
+        public void TestNegateEmpty()
         {
             var vector = new MathVector(new List<double>());
             var assumedVector = new MathVector(new List<double>());
-            Assert.IsTrue(assumedVector.Equals(vector.Negate()));
-            Assert.IsTrue(assumedVector.Equals(-vector));
 
-            vector = new MathVector(new List<double>()
+            var resultVector = (MathVector) vector.Negate();
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
+
+        [TestMethod]
+        public void TestNegateMultiple()
+        {
+            var vector = new MathVector(new List<double>()
             {
                 1,
                 2,
                 4,
                 0
             });
-            assumedVector = new MathVector(new List<double>()
+            var assumedVector = new MathVector(new List<double>()
             {
                 -1,
                 -2,
                 -4,
                 0
             });
-            Assert.IsTrue(assumedVector.Equals(vector.Negate()));
-            Assert.IsTrue(assumedVector.Equals(-vector));
 
-            assumedVector = new MathVector(new List<double>()
-            {
-                1,
-                -2,
-                4,
-                0
-            });
-            Assert.IsFalse(assumedVector.Equals(vector.Negate()));
-            Assert.IsFalse(assumedVector.Equals(-vector));
+            var resultVector = (MathVector) vector.Negate();
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
         }
 
         [TestMethod]
-        public void TestSumNumber()
+        public void TestSumNumberEmpty()
         { 
             var vector = new MathVector(new List<double>());
             var assumedVector = new MathVector(new List<double>());
-            Assert.IsTrue(assumedVector.Equals(vector.SumNumber(1)));
-            Assert.IsTrue(assumedVector.Equals(vector + 1));
 
-            vector = new MathVector(new List<double>()
+            var resultVector = (MathVector) vector.SumNumber(1);
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
+
+        [TestMethod]
+        public void TestSumNumberMultiple()
+        {
+            var vector = new MathVector(new List<double>()
             {
                 1,
                 2,
                 4,
                 0
             });
-            assumedVector = new MathVector(new List<double>()
+            var assumedVector = new MathVector(new List<double>()
             {
                 3,
                 4,
                 6,
                 2
             });
-            Assert.IsTrue(assumedVector.Equals(vector.SumNumber(2)));
-            Assert.IsTrue(assumedVector.Equals(vector + 2));
-            
-            assumedVector = new MathVector(new List<double>()
-            {
-                -1,
-                0,
-                2,
-                -2
-            });
-            Assert.IsTrue(assumedVector.Equals(vector.SumNumber(-2)));
-            Assert.IsTrue(assumedVector.Equals(vector - 2));
 
-            assumedVector = new MathVector(new List<double>()
-            {
-                1,
-                -2,
-                4,
-                0
-            });
-            Assert.IsFalse(assumedVector.Equals(vector.SumNumber(2)));
-            Assert.IsFalse(assumedVector.Equals(vector + 2));
+            var resultVector = (MathVector) vector.SumNumber(2);
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
         }
 
         [TestMethod]
-        public void TestMultiplyNumber()
+        public void TestMultiplyNumberEmpty()
         {
             var vector = new MathVector(new List<double>());
             var assumedVector = new MathVector(new List<double>());
-            Assert.IsTrue(assumedVector.Equals(vector.MultiplyNumber(2)));
-            Assert.IsTrue(assumedVector.Equals(vector * 2));
 
-            vector = new MathVector(new List<double>()
+            var resultVector = (MathVector) vector.MultiplyNumber(2);
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
+
+        [TestMethod]
+        public void TestMultiplyNumberMultiple()
+        {
+            var vector = new MathVector(new List<double>()
             {
                 1,
                 2,
                 4,
                 0
             });
-            assumedVector = new MathVector(new List<double>()
+            var assumedVector = new MathVector(new List<double>()
             {
                 2,
                 4,
                 8,
                 0
             });
-            Assert.IsTrue(assumedVector.Equals(vector.MultiplyNumber(2)));
-            Assert.IsTrue(assumedVector.Equals(vector * 2));
+
+            var resultVector = (MathVector) vector.MultiplyNumber(2);
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
+
+        [TestMethod]
+        public void TestDivideNumberEmpty()
+        {
+            var vector = new MathVector(new List<double>());
+            var assumedVector = new MathVector(new List<double>());
+
+            var resultVector = (MathVector) vector / 2;
             
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
 
-            assumedVector = new MathVector(new List<double>()
+        [TestMethod]
+        public void TestDivideNumberMultiple()
+        {
+            var vector = new MathVector(new List<double>()
             {
                 1,
-                -2,
+                2,
                 4,
                 0
             });
-            Assert.IsFalse(assumedVector.Equals(vector.MultiplyNumber(2)));
-            Assert.IsFalse(assumedVector.Equals(vector * 2));
-
-            assumedVector = new MathVector(new List<double>()
+            var assumedVector = new MathVector(new List<double>()
             {
                 0.5,
                 1,
                 2,
                 0
             });
-            Assert.IsTrue(assumedVector.Equals(vector / 2));
 
-            assumedVector = new MathVector(new List<double>()
+            var resultVector = (MathVector) vector / 2;
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
+
+        [TestMethod]
+        public void TestDivideNumberException()
+        {
+            var vector = new MathVector(new List<double>()
             {
-                0.5,
-                3,
-                8,
-                9
+                1,
+                2,
+                4,
+                0
             });
-            Assert.IsFalse(assumedVector.Equals(vector / 2));
-
             Assert.ThrowsException<DivideByZeroException>(() => vector / 0);
         }
 
         [TestMethod]
-        public void TestSum()
+        public void TestSumEmpty()
         {   
             var vector1 = new MathVector(new List<double>());
             var vector2 = new MathVector(new List<double>());
             var assumedVector = new MathVector(new List<double>());
-            Assert.IsTrue(assumedVector.Equals(vector1.Sum(vector2)));
-            Assert.IsTrue(assumedVector.Equals(vector1 + vector2));
-            Assert.IsTrue((vector1 + vector2).Equals(vector2 + vector1));
 
-            vector1 = new MathVector(new List<double>()
+            var resultVector1 = (MathVector) vector1.Sum(vector2);
+            var resultVector2 = (MathVector) vector2.Sum(vector1);
+
+            Assert.IsTrue(assumedVector.Equals(resultVector1));
+            Assert.IsTrue(resultVector1.Equals(resultVector2));
+        }
+
+        [TestMethod]
+        public void TestSumMultiple()
+        {
+            var vector1 = new MathVector(new List<double>()
             {
                 1,
                 2,
                 4,
                 0
             });
-            vector2 = new MathVector(new List<double>()
+            var vector2 = new MathVector(new List<double>()
             {
                 3,
                 5,
                 3,
                 1
             });
-            assumedVector = new MathVector(new List<double>()
+            var assumedVector = new MathVector(new List<double>()
             {
                 4,
                 7,
                 7,
                 1
             });
-            Assert.IsTrue(assumedVector.Equals(vector1.Sum(vector2)));
-            Assert.IsTrue(assumedVector.Equals(vector1 + vector2));
-            Assert.IsTrue((vector1 + vector2).Equals(vector2 + vector1));
 
-            assumedVector = new MathVector(new List<double>()
+            var resultVector1 = (MathVector) vector1.Sum(vector2);
+            var resultVector2 = (MathVector) vector2.Sum(vector1);
+
+            Assert.IsTrue(assumedVector.Equals(resultVector1));
+            Assert.IsTrue(resultVector1.Equals(resultVector2));
+        }
+
+        [TestMethod]
+        public void TestSumException()
+        {
+            var vector1 = new MathVector(new List<double>()
             {
-                8,
-                3,
+                1,
                 2,
+                4,
                 0
             });
-            Assert.IsFalse(assumedVector.Equals(vector1.Sum(vector2)));
-            Assert.IsFalse(assumedVector.Equals(vector1 + vector2));
-
-            assumedVector = new MathVector(new List<double>()
-            {
-                -2,
-                -3,
-                1,
-                -1
-            });
-            Assert.IsTrue(assumedVector.Equals(vector1 - vector2));
-            Assert.IsFalse((vector1 - vector2).Equals(vector2 - vector1));
-
-            assumedVector = new MathVector(new List<double>()
-            {
-                -8,
-                -7,
-                2,
-                -1
-            });
-            Assert.IsFalse(assumedVector.Equals(vector1 - vector2));
-
-            vector2 = new MathVector(new List<double>()
+            var vector2 = new MathVector(new List<double>()
             {
                 1,
                 1
             });
             Assert.ThrowsException<ArithmeticException>(() => vector1.Sum(vector2));
             Assert.ThrowsException<ArithmeticException>(() => vector2.Sum(vector1));
-            Assert.ThrowsException<ArithmeticException>(() => vector1 + vector2);
-            Assert.ThrowsException<ArithmeticException>(() => vector1 - vector2);
         }
 
         [TestMethod]
-        public void TestMultiply()
-        {   
+        public void TestSubtractionEmpty()
+        {
             var vector1 = new MathVector(new List<double>());
             var vector2 = new MathVector(new List<double>());
             var assumedVector = new MathVector(new List<double>());
-            Assert.IsTrue(assumedVector.Equals(vector1.Multiply(vector2)));
-            Assert.IsTrue(assumedVector.Equals(vector1 * vector2));
-            Assert.IsTrue((vector1 * vector2).Equals(vector2 * vector1));
 
-            vector1 = new MathVector(new List<double>()
+            var resultVector = (MathVector) (vector1 - vector2);
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
+
+        [TestMethod]
+        public void TestSubtractionMultiple()
+        {
+            var vector1 = new MathVector(new List<double>()
             {
                 1,
                 2,
                 4,
                 0
             });
-            vector2 = new MathVector(new List<double>()
+            var vector2 = new MathVector(new List<double>()
+            {
+                3,
+                5,
+                3,
+                1
+            });
+            var assumedVector = new MathVector(new List<double>()
+            {
+                -2,
+                -3,
+                1,
+                -1
+            });
+
+            var resultVector1 = (MathVector) (vector1 - vector2);
+            var resultVector2 = (MathVector) (vector2 - vector1);
+
+            Assert.IsTrue(assumedVector.Equals(resultVector1));
+            Assert.IsFalse(resultVector1.Equals(resultVector2));
+        }
+
+        [TestMethod]
+        public void TestSubtractionException()
+        {
+            var vector1 = new MathVector(new List<double>()
+            {
+                1,
+                2,
+                4,
+                0
+            });
+            var vector2 = new MathVector(new List<double>()
+            {
+                1,
+                1
+            });
+            Assert.ThrowsException<ArithmeticException>(() => vector1 - vector2);
+        }
+
+        [TestMethod]
+        public void TestMultiplyEmpty()
+        {   
+            var vector1 = new MathVector(new List<double>());
+            var vector2 = new MathVector(new List<double>());
+            var assumedVector = new MathVector(new List<double>());
+
+            var resultVector1 = (MathVector) vector1.Multiply(vector2);
+            var resultVector2 = (MathVector) vector2.Multiply(vector1);
+
+            Assert.IsTrue(assumedVector.Equals(resultVector1));
+            Assert.IsTrue(resultVector1.Equals(resultVector2));
+        }
+
+        [TestMethod]
+        public void TestMultiplyMultiple()
+        {
+            var vector1 = new MathVector(new List<double>()
+            {
+                1,
+                2,
+                4,
+                0
+            });
+            var vector2 = new MathVector(new List<double>()
             {
                 4,
                 5,
                 2,
                 1
             });
-            assumedVector = new MathVector(new List<double>()
+            var assumedVector = new MathVector(new List<double>()
             {
                 4,
                 10,
                 8,
                 0
             });
-            Assert.IsTrue(assumedVector.Equals(vector1.Multiply(vector2)));
-            Assert.IsTrue(assumedVector.Equals(vector1 * vector2));
-            Assert.IsTrue((vector1 * vector2).Equals(vector2 * vector1));
 
-            assumedVector = new MathVector(new List<double>()
+            var resultVector1 = (MathVector) vector1.Multiply(vector2);
+            var resultVector2 = (MathVector) vector2.Multiply(vector1);
+
+            Assert.IsTrue(assumedVector.Equals(resultVector1));
+            Assert.IsTrue(resultVector1.Equals(resultVector2));
+        }
+
+        [TestMethod]
+        public void TestMultiplyArithmeticException()
+        {
+            var vector1 = new MathVector(new List<double>()
             {
-                8,
-                3,
+                1,
                 2,
+                4,
                 0
             });
-            Assert.IsFalse(assumedVector.Equals(vector1.Multiply(vector2)));
-            Assert.IsFalse(assumedVector.Equals(vector1 * vector2));
+            var vector2 = new MathVector(new List<double>()
+            {
+                1,
+                1
+            });
+            Assert.ThrowsException<ArithmeticException>(() => vector1.Multiply(vector2));
+            Assert.ThrowsException<ArithmeticException>(() => vector2.Multiply(vector1));
+        }
 
-            assumedVector = new MathVector(new List<double>()
+        [TestMethod]
+        public void TestDivisionEmpty()
+        {
+            var vector1 = new MathVector(new List<double>());
+            var vector2 = new MathVector(new List<double>());
+            var assumedVector = new MathVector(new List<double>());
+
+            var resultVector = (MathVector) vector1 / vector2;
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
+
+        [TestMethod]
+        public void TestDivisionMultiple()
+        {
+            var vector1 = new MathVector(new List<double>()
+            {
+                1,
+                2,
+                4,
+                0
+            });
+            var vector2 = new MathVector(new List<double>()
+            {
+                4,
+                5,
+                2,
+                1
+            });
+            var assumedVector = new MathVector(new List<double>()
             {
                 0.25,
                 0.4,
                 2,
                 0
             });
-            Assert.IsTrue(assumedVector.Equals(vector1 / vector2));
 
-            assumedVector = new MathVector(new List<double>()
+            var resultVector = (MathVector) vector1 / vector2;
+
+            Assert.IsTrue(assumedVector.Equals(resultVector));
+        }
+
+        [TestMethod]
+        public void TestDivisionDivisionException()
+        {
+            var vector1 = new MathVector(new List<double>()
             {
-                -8,
-                -7,
+                1,
                 2,
-                -1
+                4,
+                0
             });
-            Assert.IsFalse(assumedVector.Equals(vector1 / vector2));
-
-            vector2 = new MathVector(new List<double>()
+            var vector2 = new MathVector(new List<double>()
             {
                 0,
                 1,
@@ -432,99 +613,162 @@ namespace MathLibUnitTest
                 0
             });
             Assert.ThrowsException<DivideByZeroException>(() => vector1 / vector2);
+        }
 
-            vector2 = new MathVector(new List<double>()
+        [TestMethod]
+        public void TestDivisionArithmeticException()
+        { 
+            var vector1 = new MathVector(new List<double>()
+            {
+                1,
+                2,
+                4,
+                0
+            });
+            var vector2 = new MathVector(new List<double>()
             {
                 1,
                 1
             });
-            Assert.ThrowsException<ArithmeticException>(() => vector1.Multiply(vector2));
-            Assert.ThrowsException<ArithmeticException>(() => vector2.Multiply(vector1));
-            Assert.ThrowsException<ArithmeticException>(() => vector1 * vector2);
             Assert.ThrowsException<ArithmeticException>(() => vector1 / vector2);
         }
 
         [TestMethod]
-        public void TestScalarMultiply()
+        public void TestScalarMultiplyEmpty()
         {
             var vector1 = new MathVector(new List<double>());
             var vector2 = new MathVector(new List<double>());
-            Assert.AreEqual(0, vector1.ScalarMultiply(vector2));
-            Assert.AreEqual(0, vector1 % vector2);
-            Assert.AreEqual(vector2.ScalarMultiply(vector1), vector1.ScalarMultiply(vector2));
-            Assert.AreEqual(vector1 % vector2, vector2 % vector2);
+            double assumed = 0;
 
-            vector1 = new MathVector(new List<double>()
+            double vector1Result = vector1.ScalarMultiply(vector2);
+            double vector2Result = vector2.ScalarMultiply(vector1);
+
+            Assert.AreEqual(assumed, vector1Result);
+            Assert.AreEqual(vector1Result, vector2Result);
+        }
+
+        [TestMethod]
+        public void TestScalarMultiplyMultiple()
+        { 
+            var vector1 = new MathVector(new List<double>()
             {
                 1,
                 2,
                 3
             });
-            vector2 = new MathVector(new List<double>()
+            var vector2 = new MathVector(new List<double>()
             {
                 3,
                 4,
                 5
             });
-            Assert.AreEqual(26, vector1.ScalarMultiply(vector2));
-            Assert.AreEqual(26, vector1 % vector2);
-            Assert.AreEqual(vector2.ScalarMultiply(vector1), vector1.ScalarMultiply(vector2));
-            Assert.AreEqual(vector1 % vector2, vector2 % vector1);
+            double assumed = 26;
 
-            vector2 = new MathVector(new List<double>()
+            double vector1Result = vector1.ScalarMultiply(vector2);
+            double vector2Result = vector2.ScalarMultiply(vector1);
+
+            Assert.AreEqual(assumed, vector1Result);
+            Assert.AreEqual(vector1Result, vector2Result);
+        }
+
+        [TestMethod]
+        public void TestScalarMultiplyException()
+        { 
+            var vector1 = new MathVector(new List<double>()
             {
-                4,
+                1,
                 2,
-                1
+                3
             });
-            Assert.AreNotEqual(26, vector1.ScalarMultiply(vector2));
-            Assert.AreNotEqual(26, vector1 % vector2);
-
-            vector2 = new MathVector(new List<double>()
+            var vector2 = new MathVector(new List<double>()
             {
                 1,
                 2
             });
             Assert.ThrowsException<ArithmeticException>(() => vector1.ScalarMultiply(vector2));
-            Assert.ThrowsException<ArithmeticException>(() => vector1 % vector2);
         }
 
         [TestMethod]
-        public void TestCalcDistance()
+        public void TestCalcDistanceEmpty()
         {
             var vector1 = new MathVector(new List<double>());
             var vector2 = new MathVector(new List<double>());
-            Assert.AreEqual(0, vector1.CalcDistance(vector2));
+            double assumed = 0;
 
-            vector1 = new MathVector(new List<double>()
+            double vector1Result = vector1.CalcDistance(vector2);
+            double vector2Result = vector2.CalcDistance(vector1);
+
+            Assert.AreEqual(assumed, vector1Result);
+            Assert.AreEqual(vector1Result, vector2Result);
+        }
+
+        [TestMethod]
+        public void TestCalcDistanceSingle()
+        {
+            var vector1 = new MathVector(new List<double>()
             {
                 2
             });
-            Assert.ThrowsException<ArithmeticException>(() => vector1.CalcDistance(vector2));
-
-            vector2 = new MathVector(new List<double>()
+            var vector2 = new MathVector(new List<double>()
             {
                 3
             });
-            Assert.AreEqual(1, vector2.CalcDistance(vector1));
-            Assert.AreEqual(vector2.CalcDistance(vector1), vector1.CalcDistance(vector2));
-            Assert.AreEqual(0, vector1.CalcDistance(vector1));
+            double assumed = 1;
 
-            vector1 = new MathVector(new List<double>()
+            double vector1Result = vector1.CalcDistance(vector2);
+            double vector2Result = vector2.CalcDistance(vector1);
+
+            Assert.AreEqual(assumed, vector1Result);
+            Assert.AreEqual(vector1Result, vector2Result);
+        }
+
+        [TestMethod]
+        public void TestCalcDistanceMultiple()
+        {
+            var vector1 = new MathVector(new List<double>()
             {
                 10,
                 8,
                 9
             });
-            vector2 = new MathVector(new List<double>()
+            var vector2 = new MathVector(new List<double>()
             {
                 6,
                 4,
                 7
             });
-            Assert.AreEqual(6, vector2.CalcDistance(vector1));
-            Assert.AreEqual(vector2.CalcDistance(vector1), vector1.CalcDistance(vector2));
+            double assumed = 6;
+
+            double vector1Result = vector1.CalcDistance(vector2);
+            double vector2Result = vector2.CalcDistance(vector1);
+
+            Assert.AreEqual(assumed, vector1Result);
+            Assert.AreEqual(vector1Result, vector2Result);
         }
 
+        public void TestCalcDistanceEqual()
+        {
+            var vector1 = new MathVector(new List<double>()
+            {
+                2
+            });
+            double assumed = 0;
+
+            double result = vector1.CalcDistance(vector1);
+
+            Assert.AreEqual(assumed, result);
+        }
+
+        [TestMethod]
+        public void TestCalcDistanceException()
+        {
+            var vector1 = new MathVector(new List<double>()
+            {
+                2
+            });
+            var vector2 = new MathVector(new List<double>());
+
+            Assert.ThrowsException<ArithmeticException>(() => vector1.CalcDistance(vector2));
+        }
     }
 }
