@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace IrisFlowerCharts.Files
+namespace IrisFlowerCharts.References.Files
 {
     /// <summary>Service that performs file operations.</summary>
     static public class FileManager

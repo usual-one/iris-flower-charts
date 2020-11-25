@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace IrisFlowerCharts.Files
+namespace IrisFlowerCharts.References.Files
 {
     /// <summary>Services that performs operations with CSV-formatted files.</summary>
     static public class CSVFileManager
